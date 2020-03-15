@@ -1,5 +1,6 @@
 # Dimba
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a17d7a000f6f46dd8dc9988447e60b5c)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=odaridavid/Dimba&amp;utm_campaign=Badge_Grade)
+|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a17d7a000f6f46dd8dc9988447e60b5c)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=odaridavid/Dimba&amp;utm_campaign=Badge_Grade)|[![Build Status](https://travis-ci.com/odaridavid/Dimba.svg?token=ssxgxFpzTcwt6ABmpYRk&branch=master)](https://travis-ci.com/odaridavid/Dimba)|
+|:---:|:---:|
 
 A football companion app showcasing cool stuff ⚽🏀
 
