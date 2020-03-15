@@ -1,5 +1,7 @@
 # Dimba
-A sports companion app showcasing RxJava usage mostly and other cool stuff ⚽🏀
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a17d7a000f6f46dd8dc9988447e60b5c)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=odaridavid/Dimba&amp;utm_campaign=Badge_Grade)
+
+A football companion app showcasing cool stuff ⚽🏀
 
 ## License
 
