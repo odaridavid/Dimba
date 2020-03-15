@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "495011740649",
+    "firebase_url": "https://dimba-19735.firebaseio.com",
+    "project_id": "dimba-19735",
+    "storage_bucket": "dimba-19735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495011740649:android:e9e9f4439858ebd36d2978",
+        "android_client_info": {
+          "package_name": "com.github.odaridavid.dimba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495011740649-ub08nutc3739nkp78rvepa3ca3evfgbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdS3bLktZX4nCy5XrF-HN9jsPuIxBM_Js"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495011740649-ub08nutc3739nkp78rvepa3ca3evfgbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
