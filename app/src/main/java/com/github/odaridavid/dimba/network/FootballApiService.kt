@@ -13,5 +13,4 @@ package com.github.odaridavid.dimba.network
  * the License.
  *
  **/
-interface FootballApiService {
-}
+interface FootballApiService
