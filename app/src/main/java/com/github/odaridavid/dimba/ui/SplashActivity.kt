@@ -1,11 +1,8 @@
-package com.github.odaridavid.dimba
+package com.github.odaridavid.dimba.ui
 
-import android.app.Application
-import com.github.odaridavid.dimba.di.network
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import timber.log.Timber
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.github.odaridavid.dimba.R
 
 /**
  *
@@ -20,17 +17,10 @@ import timber.log.Timber
  * the License.
  *
  **/
-class DimbaApplication : Application() {
+class SplashActivity : AppCompatActivity() {
 
-    override fun onCreate() {
-        super.onCreate()
-        if (BuildConfig.DEBUG)
-            Timber.plant(Timber.DebugTree())
-
-        startKoin {
-            androidLogger()
-            androidContext(this@DimbaApplication)
-            modules(listOf(network))
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
     }
 }

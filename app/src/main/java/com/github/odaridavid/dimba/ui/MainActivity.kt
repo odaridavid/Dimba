@@ -1,7 +1,9 @@
-package com.github.odaridavid.dimba
+package com.github.odaridavid.dimba.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.github.odaridavid.dimba.R
+
 /**
  *
  * Copyright 2020 David Odari
