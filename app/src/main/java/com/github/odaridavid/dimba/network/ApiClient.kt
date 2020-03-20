@@ -1,5 +1,6 @@
 package com.github.odaridavid.dimba.network
 
+import com.github.odaridavid.dimba.BuildConfig
 import com.github.odaridavid.dimba.commons.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,9 +23,24 @@ import java.util.concurrent.TimeUnit
  **/
 object ApiClient {
 
+    private const val HEADER_KEY_RAPID_API_HOST = "x-rapidapi-host"
+    private const val HEADER_VALUE_RAPID_API_HOST = "api-football-v1.p.rapidapi.com"
+    private const val HEADER_KEY_RAPID_API_KEY = "x-rapidapi-key"
+
     fun provideOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor { chain ->
+                val originalReq = chain.request()
+
+                val newReqBuilder = originalReq.newBuilder()
+                    .header(HEADER_KEY_RAPID_API_HOST, HEADER_VALUE_RAPID_API_HOST)
+                    .header(HEADER_KEY_RAPID_API_KEY, BuildConfig.DIMBA_API_KEY)
+
+                val newReq = newReqBuilder.build()
+
+                chain.proceed(newReq)
+            }
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS)
             .build()

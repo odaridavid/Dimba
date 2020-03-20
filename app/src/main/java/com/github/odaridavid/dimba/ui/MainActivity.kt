@@ -1,7 +1,6 @@
 package com.github.odaridavid.dimba.ui
 
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.github.odaridavid.dimba.R
 
 /**
@@ -17,11 +16,4 @@ import com.github.odaridavid.dimba.R
  * the License.
  *
  **/
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-
-}
+class MainActivity : AppCompatActivity(R.layout.activity_main)

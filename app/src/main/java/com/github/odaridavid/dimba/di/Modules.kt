@@ -1,6 +1,11 @@
 package com.github.odaridavid.dimba.di
 
+import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.network.ApiClient
+import com.github.odaridavid.dimba.repositories.FixturesRepository
+import com.github.odaridavid.dimba.repositories.FixturesRepositoryImpl
+import com.github.odaridavid.dimba.ui.fixtures.FixturesViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -21,4 +26,15 @@ val network = module {
     single { ApiClient.provideOkhttpClient(get()) }
     single { ApiClient.provideRetrofit(get()) }
     single { ApiClient.buildService(get()) }
+}
+
+val data = module {
+    factory<FixturesRepository> { FixturesRepositoryImpl(get()) }
+}
+
+val viewModel = module {
+    viewModel { FixturesViewModel(get()) }
+}
+val domain = module {
+    factory { GetLiveFixturesUseCase(get()) }
 }

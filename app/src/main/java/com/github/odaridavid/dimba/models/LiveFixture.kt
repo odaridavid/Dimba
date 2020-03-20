@@ -1,9 +1,4 @@
-package com.github.odaridavid.dimba.network
-
-import com.github.odaridavid.dimba.network.model.FixturesInPlayResponse
-import org.threeten.bp.ZonedDateTime
-import retrofit2.http.GET
-import retrofit2.http.Query
+package com.github.odaridavid.dimba.models
 
 /**
  *
@@ -18,11 +13,24 @@ import retrofit2.http.Query
  * the License.
  *
  **/
-interface FootballApiService {
-
-    @GET("v2/fixtures/live")
-    suspend fun getFixturesInPlay(
-        @Query("timezone") timezone: String = ZonedDateTime.now().zone.id
-    ): FixturesInPlayResponse
-
-}
+data class LiveFixture(
+    val fixtureId: Int,
+    val leagueId: Int,
+    val league: League,
+    val eventDate: String,
+    val eventTimestamp: Long,
+    val firstHalfStart: Long,
+    val secondHalfStart: Long,
+    val round: String,
+    val status: String,
+    val statusShort: String,
+    val elapsed: Int,
+    val venue: String,
+    val referee: String?,
+    val homeTeam: Team,
+    val awayTeam: Team,
+    val goalsHomeTeam: Byte,
+    val goalsAwayTeam: Byte,
+    val score: Scores,
+    val events: List<MatchEvents>
+)
