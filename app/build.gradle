@@ -68,6 +68,9 @@ dependencies {
     //Material Design
     implementation "com.google.android.material:material:1.2.0-alpha05"
 
+    //Image Loading
+    implementation "io.coil-kt:coil:0.9.5"
+
     //Koin - DI
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-core:$koin_version"
