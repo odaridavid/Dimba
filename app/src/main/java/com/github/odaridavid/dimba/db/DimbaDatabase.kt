@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.widgets
+package com.github.odaridavid.dimba.db
 
 /**
  *
@@ -13,6 +13,6 @@ package com.github.odaridavid.dimba.widgets
  * the License.
  *
  **/
-class HeadToHeadView {
-    //TODO Create Reusable Head to Head View for Teams
+class DimbaDatabase {
+    //TODO("Implementation")
 }

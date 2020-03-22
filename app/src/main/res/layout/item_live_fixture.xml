@@ -43,6 +43,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_team_name_text_view" />
 
+        <TextView
+            android:id="@+id/elapsed_time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="?colorSecondary"
+            app:layout_constraintEnd_toStartOf="@id/away_team_logo"
+            app:layout_constraintStart_toEndOf="@+id/home_team_logo"
+            app:layout_constraintBottom_toTopOf="@id/goals_text_view"
+            tools:text="40:56" />
 
         <TextView
             android:id="@+id/goals_text_view"

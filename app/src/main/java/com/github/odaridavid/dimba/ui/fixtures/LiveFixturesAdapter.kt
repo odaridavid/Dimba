@@ -46,9 +46,11 @@ class LiveFixturesAdapter :
 
                 val ivHomeTeamLogo = findViewById<ImageView>(R.id.home_team_logo)
                 ivHomeTeamLogo.load(fixture.homeTeam.logo)
+                ivHomeTeamLogo.contentDescription = "${fixture.homeTeam.name} logo"
 
                 val ivAwayTeamLogo = findViewById<ImageView>(R.id.away_team_logo)
                 ivAwayTeamLogo.load(fixture.awayTeam.logo)
+                ivAwayTeamLogo.contentDescription = "${fixture.awayTeam.name} logo"
 
                 val tvAwayTeamName = findViewById<TextView>(R.id.away_team_name_text_view)
                 tvAwayTeamName.text = fixture.awayTeam.name
@@ -59,6 +61,9 @@ class LiveFixturesAdapter :
                     fixture.goalsHomeTeam,
                     fixture.goalsAwayTeam
                 )
+
+                val tvElapsedTime = findViewById<TextView>(R.id.elapsed_time_text_view)
+                tvElapsedTime.text = "${fixture.elapsed}`"
             }
         }
     }

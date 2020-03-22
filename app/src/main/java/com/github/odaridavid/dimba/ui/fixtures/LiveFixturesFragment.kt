@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 class LiveFixturesFragment : Fragment() {
 
+    //TODO Check Live Fixture Status Periodically
+    //TODO Display Live Fixture Events
     private val fixturesViewModel: FixturesViewModel by viewModel()
 
     override fun onCreateView(
