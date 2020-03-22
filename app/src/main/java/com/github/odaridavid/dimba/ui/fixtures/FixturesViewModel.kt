@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.models.LiveFixture
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -30,8 +31,8 @@ class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCa
         get() = _fixtures
 
     init {
-        viewModelScope.launch {
-            _fixtures.value = getLiveFixturesUseCase.invoke()
+        viewModelScope.launch(Dispatchers.IO) {
+            _fixtures.postValue(getLiveFixturesUseCase.invoke())
         }
     }
 
