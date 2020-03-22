@@ -1,9 +1,4 @@
-package com.github.odaridavid.dimba.network
-
-import com.github.odaridavid.dimba.network.model.FixturesInPlayResponse
-import org.threeten.bp.ZonedDateTime
-import retrofit2.http.GET
-import retrofit2.http.Query
+package com.github.odaridavid.dimba.widgets
 
 /**
  *
@@ -18,11 +13,6 @@ import retrofit2.http.Query
  * the License.
  *
  **/
-interface FootballApiService {
-
-    @GET("v2/fixtures/live")
-    suspend fun getFixturesInPlay(
-        @Query("timezone") timezone: String = ZonedDateTime.now().zone.id
-    ): FixturesInPlayResponse
-
+class HeadToHeadView {
+    //TODO Create Reusable Head to Head View for Teams
 }
