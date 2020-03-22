@@ -17,4 +17,4 @@ sealed class ResultState<out T>
 
 class Success<out T>(val data: T) : ResultState<T>()
 
-class Error(val e: Exception) : ResultState<Nothing>()
+class Error<T>(val e: Exception) : ResultState<T>()

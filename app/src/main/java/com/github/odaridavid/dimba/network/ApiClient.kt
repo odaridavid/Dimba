@@ -1,11 +1,15 @@
 package com.github.odaridavid.dimba.network
 
+import android.content.Context
 import com.github.odaridavid.dimba.BuildConfig
 import com.github.odaridavid.dimba.commons.Constants
+import okhttp3.Cache
+import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -27,7 +31,13 @@ object ApiClient {
     private const val HEADER_VALUE_RAPID_API_HOST = "api-football-v1.p.rapidapi.com"
     private const val HEADER_KEY_RAPID_API_KEY = "x-rapidapi-key"
 
-    fun provideOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkhttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        context: Context
+    ): OkHttpClient {
+        val httpCacheDirectory = File(context.cacheDir, "http-cache")
+        val cacheSize: Long = 10 * 1024 * 1024
+        val cache = Cache(httpCacheDirectory, cacheSize)
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor { chain ->
@@ -43,6 +53,7 @@ object ApiClient {
             }
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS)
+            .cache(cache)
             .build()
     }
 

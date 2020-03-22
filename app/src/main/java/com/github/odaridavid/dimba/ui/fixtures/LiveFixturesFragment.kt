@@ -15,6 +15,7 @@ import com.github.odaridavid.dimba.commons.isVisible
 import com.github.odaridavid.dimba.models.LiveFixture
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.net.ConnectException
 
 
 class LiveFixturesFragment : Fragment() {
@@ -36,7 +37,7 @@ class LiveFixturesFragment : Fragment() {
         observeLiveFixtures()
     }
 
-    private fun displayNoInternetConnection() {
+    private fun displayOnNetworkError() {
         live_fixtures_progress_bar.isVisible(false)
         no_live_fixtures_text_view.text = getString(R.string.no_internet_connection)
         no_live_fixtures_text_view.isVisible(true)
@@ -46,23 +47,23 @@ class LiveFixturesFragment : Fragment() {
         fixturesViewModel.fixtures.observe(this, Observer {
             live_fixtures_progress_bar.isVisible(false)
             when (it) {
-                is Success<*> -> {
-                    if (it.data is List<*>) {
-                        if (it.data.isEmpty()) no_live_fixtures_text_view.isVisible(true)
-                        else {
-                            live_fixtures_recycler_view.layoutManager = LinearLayoutManager(context)
-                            live_fixtures_recycler_view.adapter = LiveFixturesAdapter().apply {
-                                val liveFixtures = it.data.filterIsInstance<LiveFixture>()
-                                submitList(liveFixtures)
-                            }
-                        }
-                    }
-                }
+                is Success -> displayOnSuccess(it)
                 is Error -> {
-                    if (it.e is NoInternetConnectionException) displayNoInternetConnection()
+                    if (it.e is NoInternetConnectionException || it.e is ConnectException) displayOnNetworkError()
                 }
             }
         })
+    }
+
+    private fun displayOnSuccess(result: Success<List<LiveFixture>>) {
+        val liveFixtures = result.data
+        if (liveFixtures.isEmpty()) no_live_fixtures_text_view.isVisible(true)
+        else {
+            live_fixtures_recycler_view.layoutManager = LinearLayoutManager(context)
+            live_fixtures_recycler_view.adapter = LiveFixturesAdapter().apply {
+                submitList(liveFixtures)
+            }
+        }
     }
 
 }

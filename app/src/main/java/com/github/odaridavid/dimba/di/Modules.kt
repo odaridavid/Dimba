@@ -28,7 +28,7 @@ import org.koin.dsl.module
  **/
 val network = module {
     single { ApiClient.provideLoggingInterceptor() }
-    single { ApiClient.provideOkhttpClient(httpLoggingInterceptor = get()) }
+    single { ApiClient.provideOkhttpClient(httpLoggingInterceptor = get(),context = androidContext()) }
     single { ApiClient.provideRetrofit(okHttpClient = get()) }
     single { ApiClient.buildService(retrofit = get()) }
     single { NetworkCallback(sharedPreferences = get()) }
