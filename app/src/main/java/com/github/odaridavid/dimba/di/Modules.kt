@@ -35,7 +35,7 @@ val network = module {
 }
 
 val data = module {
-    factory<FixturesRepository> { FixturesRepositoryImpl(api = get()) }
+    factory<FixturesRepository> { FixturesRepositoryImpl(api = get(),sharedPreferences = get()) }
 }
 
 val viewModel = module {

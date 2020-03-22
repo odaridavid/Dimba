@@ -1,7 +1,8 @@
 package com.github.odaridavid.dimba.repositories
 
+import android.content.SharedPreferences
+import com.github.odaridavid.dimba.commons.*
 import com.github.odaridavid.dimba.mappers.toEntity
-import com.github.odaridavid.dimba.models.LiveFixture
 import com.github.odaridavid.dimba.network.FootballApiService
 
 /**
@@ -17,15 +18,23 @@ import com.github.odaridavid.dimba.network.FootballApiService
  * the License.
  *
  **/
-class FixturesRepositoryImpl(private val api: FootballApiService) : FixturesRepository {
+class FixturesRepositoryImpl(
+    private val api: FootballApiService,
+    private val sharedPreferences: SharedPreferences
+) : FixturesRepository {
 
-    override suspend fun getLiveFixtures(): List<LiveFixture> {
-        val response = api.getFixturesInPlay()
-        return if (response.api.results == 0)
-            emptyList()
-        else {
-            val fixtures = response.api.fixtures
-            fixtures.map { it.toEntity() }
+    override suspend fun getLiveFixtures(): ResultState<*> {
+        val isConnected = sharedPreferences.getBoolean(Constants.PREF_KEY_NETWORK_AVAILABLE, false)
+        return if (isConnected) {
+            val response = api.getFixturesInPlay()
+            if (response.api.results == 0)
+                Success(emptyList())
+            else {
+                val fixtures = response.api.fixtures
+                Success(fixtures.map { it.toEntity() })
+            }
+        } else {
+            Error(NoInternetConnectionException)
         }
     }
 

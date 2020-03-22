@@ -1,6 +1,6 @@
 package com.github.odaridavid.dimba.repositories
 
-import com.github.odaridavid.dimba.models.LiveFixture
+import com.github.odaridavid.dimba.commons.ResultState
 
 
 /**
@@ -18,6 +18,6 @@ import com.github.odaridavid.dimba.models.LiveFixture
  **/
 interface FixturesRepository {
 
-    suspend fun getLiveFixtures(): List<LiveFixture>
+    suspend fun getLiveFixtures(): ResultState<*>
 
 }

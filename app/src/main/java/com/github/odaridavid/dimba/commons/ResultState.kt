@@ -1,7 +1,4 @@
-package com.github.odaridavid.dimba.interactors
-
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.repositories.FixturesRepository
+package com.github.odaridavid.dimba.commons
 
 /**
  *
@@ -16,7 +13,8 @@ import com.github.odaridavid.dimba.repositories.FixturesRepository
  * the License.
  *
  **/
-class GetLiveFixturesUseCase(private val fixturesRepository: FixturesRepository) {
+sealed class ResultState<out T>
 
-    suspend operator fun invoke(): ResultState<*> = fixturesRepository.getLiveFixtures()
-}
+class Success<out T>(val data: T) : ResultState<T>()
+
+class Error(val e: Exception) : ResultState<Nothing>()

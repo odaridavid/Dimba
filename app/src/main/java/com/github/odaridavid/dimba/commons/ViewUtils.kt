@@ -1,7 +1,6 @@
-package com.github.odaridavid.dimba.interactors
+package com.github.odaridavid.dimba.commons
 
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.repositories.FixturesRepository
+import android.view.View
 
 /**
  *
@@ -16,7 +15,7 @@ import com.github.odaridavid.dimba.repositories.FixturesRepository
  * the License.
  *
  **/
-class GetLiveFixturesUseCase(private val fixturesRepository: FixturesRepository) {
 
-    suspend operator fun invoke(): ResultState<*> = fixturesRepository.getLiveFixtures()
+fun View.isVisible(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
 }
