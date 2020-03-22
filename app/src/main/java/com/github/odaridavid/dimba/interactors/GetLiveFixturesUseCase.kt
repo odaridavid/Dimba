@@ -1,6 +1,7 @@
 package com.github.odaridavid.dimba.interactors
 
 import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.LiveFixture
 import com.github.odaridavid.dimba.repositories.FixturesRepository
 
 /**
@@ -18,5 +19,6 @@ import com.github.odaridavid.dimba.repositories.FixturesRepository
  **/
 class GetLiveFixturesUseCase(private val fixturesRepository: FixturesRepository) {
 
-    suspend operator fun invoke(): ResultState<*> = fixturesRepository.getLiveFixtures()
+    suspend operator fun invoke(): ResultState<List<LiveFixture>> =
+        fixturesRepository.getLiveFixtures()
 }

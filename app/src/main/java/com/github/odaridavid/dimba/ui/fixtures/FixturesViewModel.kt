@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
+import com.github.odaridavid.dimba.models.LiveFixture
 import kotlinx.coroutines.launch
 
 /**
@@ -23,9 +24,9 @@ import kotlinx.coroutines.launch
  **/
 class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCase) : ViewModel() {
 
-    private val _fixtures = MutableLiveData<ResultState<*>>()
+    private val _fixtures = MutableLiveData<ResultState<List<LiveFixture>>>()
 
-    val fixtures: LiveData<ResultState<*>>
+    val fixtures: LiveData<ResultState<List<LiveFixture>>>
         get() = _fixtures
 
     init {
