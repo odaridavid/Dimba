@@ -1,19 +1,14 @@
 package com.github.odaridavid.dimba.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.github.odaridavid.dimba.R
-import com.github.odaridavid.dimba.commons.NetworkCallback
 import com.github.odaridavid.dimba.commons.NetworkUtils
-import org.koin.android.ext.android.inject
 
 /**
  *
@@ -31,7 +26,6 @@ import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val networkCallback: NetworkCallback by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +36,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        NetworkUtils.registerNetworkCallBack(this, networkCallback)
     }
 
     override fun onSupportNavigateUp(): Boolean {

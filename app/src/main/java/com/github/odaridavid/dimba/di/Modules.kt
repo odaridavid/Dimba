@@ -3,7 +3,6 @@ package com.github.odaridavid.dimba.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.github.odaridavid.dimba.commons.Constants.APP_PREF_KEY
-import com.github.odaridavid.dimba.commons.NetworkCallback
 import com.github.odaridavid.dimba.interactors.GetLeagueStandingsUseCase
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.network.ApiClient
@@ -40,11 +39,10 @@ val network = module {
     }
     single { ApiClient.provideRetrofit(okHttpClient = get()) }
     single { ApiClient.buildService(retrofit = get()) }
-    single { NetworkCallback(sharedPreferences = get()) }
 }
 
 val data = module {
-    factory<FixturesRepository> { FixturesRepositoryImpl(api = get(), sharedPreferences = get()) }
+    factory<FixturesRepository> { FixturesRepositoryImpl(api = get()) }
     factory<StandingsRepository> { StandingsRepositoryImpl(api = get()) }
 }
 
@@ -55,13 +53,4 @@ val viewModel = module {
 val domain = module {
     factory { GetLiveFixturesUseCase(fixturesRepository = get()) }
     factory { GetLeagueStandingsUseCase(standingsRepository = get()) }
-}
-
-val framework = module {
-    single<SharedPreferences> {
-        androidContext().getSharedPreferences(
-            APP_PREF_KEY,
-            Context.MODE_PRIVATE
-        )
-    }
 }

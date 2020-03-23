@@ -1,6 +1,5 @@
 package com.github.odaridavid.dimba.repositories
 
-import android.content.SharedPreferences
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.runWithConnection
@@ -22,12 +21,11 @@ import com.github.odaridavid.dimba.network.FootballApiService
  *
  **/
 class FixturesRepositoryImpl(
-    private val api: FootballApiService,
-    private val sharedPreferences: SharedPreferences
+    private val api: FootballApiService
 ) : FixturesRepository {
 
     override suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
-        return runWithConnection(sharedPreferences) {
+        return runWithConnection {
             val response = api.getFixturesInPlay()
             if (response.api.results == 0)
                 Success(emptyList())

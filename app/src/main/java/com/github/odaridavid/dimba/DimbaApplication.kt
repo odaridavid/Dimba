@@ -1,7 +1,10 @@
 package com.github.odaridavid.dimba
 
 import android.app.Application
-import com.github.odaridavid.dimba.di.*
+import com.github.odaridavid.dimba.di.data
+import com.github.odaridavid.dimba.di.domain
+import com.github.odaridavid.dimba.di.network
+import com.github.odaridavid.dimba.di.viewModel
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -32,7 +35,7 @@ class DimbaApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DimbaApplication)
-            modules(listOf(network, data, viewModel, domain, framework))
+            modules(listOf(network, data, viewModel, domain))
         }
 
         AndroidThreeTen.init(this)
