@@ -1,7 +1,15 @@
 package com.github.odaridavid.dimba.ui.standings
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.odaridavid.dimba.interactors.GetLeagueStandingsUseCase
+import androidx.lifecycle.viewModelScope
+import com.github.odaridavid.dimba.commons.Loading
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
+import com.github.odaridavid.dimba.models.standings.TeamStanding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  *
@@ -16,5 +24,17 @@ import com.github.odaridavid.dimba.interactors.GetLeagueStandingsUseCase
  * the License.
  *
  **/
-class StandingsViewModel(getLeagueStandingsUseCase: GetLeagueStandingsUseCase) : ViewModel() {
+class StandingsViewModel(val getStandingsUseCase: GetStandingsUseCase) : ViewModel() {
+
+    private val _leagueStanding = MutableLiveData<ResultState<List<List<TeamStanding>>>>()
+
+    val leagueStanding: LiveData<ResultState<List<List<TeamStanding>>>>
+        get() = _leagueStanding
+
+    fun getLeagueStanding(leagueId: Int) {
+        _leagueStanding.value = Loading<List<List<TeamStanding>>>()
+        viewModelScope.launch(Dispatchers.IO) {
+            _leagueStanding.value = getStandingsUseCase.invoke(leagueId)
+        }
+    }
 }

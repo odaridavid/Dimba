@@ -1,9 +1,6 @@
 package com.github.odaridavid.dimba.di
 
-import android.content.Context
-import android.content.SharedPreferences
-import com.github.odaridavid.dimba.commons.Constants.APP_PREF_KEY
-import com.github.odaridavid.dimba.interactors.GetLeagueStandingsUseCase
+import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.network.ApiClient
 import com.github.odaridavid.dimba.repositories.FixturesRepository
@@ -48,9 +45,9 @@ val data = module {
 
 val viewModel = module {
     viewModel { FixturesViewModel(getLiveFixturesUseCase = get()) }
-    viewModel { StandingsViewModel(getLeagueStandingsUseCase = get()) }
+    viewModel { StandingsViewModel(getStandingsUseCase = get()) }
 }
 val domain = module {
     factory { GetLiveFixturesUseCase(fixturesRepository = get()) }
-    factory { GetLeagueStandingsUseCase(standingsRepository = get()) }
+    factory { GetStandingsUseCase(standingsRepository = get()) }
 }

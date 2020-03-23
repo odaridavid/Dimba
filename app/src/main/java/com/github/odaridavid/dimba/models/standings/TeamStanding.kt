@@ -13,5 +13,20 @@ package com.github.odaridavid.dimba.models.standings
  * the License.
  *
  **/
-class TeamStanding
+data class TeamStanding(
+    val rank: Int,
+    val teamId: Int,
+    val teamName: String,
+    val logo: String,
+    val group: String,
+    val form: String,
+    val status: String?,
+    val description: String,
+    val all: AllMatches,
+    val home: HomeMatches,
+    val away: AwayMatches,
+    val goalsDiff: Int,
+    val points: Int,
+    val lastUpdate: String
+)
 

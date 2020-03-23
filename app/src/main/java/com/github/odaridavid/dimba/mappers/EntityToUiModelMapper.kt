@@ -1,6 +1,4 @@
-package com.github.odaridavid.dimba.interactors
-
-import com.github.odaridavid.dimba.repositories.StandingsRepository
+package com.github.odaridavid.dimba.mappers
 
 /**
  *
@@ -15,4 +13,3 @@ import com.github.odaridavid.dimba.repositories.StandingsRepository
  * the License.
  *
  **/
-class GetLeagueStandingsUseCase(val standingsRepository: StandingsRepository)

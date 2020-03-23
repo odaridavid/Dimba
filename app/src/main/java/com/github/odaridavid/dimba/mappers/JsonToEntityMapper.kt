@@ -1,6 +1,10 @@
 package com.github.odaridavid.dimba.mappers
 
 import com.github.odaridavid.dimba.models.fixtures.*
+import com.github.odaridavid.dimba.models.standings.AllMatches
+import com.github.odaridavid.dimba.models.standings.AwayMatches
+import com.github.odaridavid.dimba.models.standings.HomeMatches
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.model.*
 
 /**
@@ -74,4 +78,36 @@ fun EventsResponse.toEntity(): MatchEvents {
         detail,
         comments
     )
+}
+
+//Standings
+fun TeamStandingResponse.toEntity(): TeamStanding {
+    return TeamStanding(
+        rank,
+        teamId,
+        teamName,
+        logo,
+        group,
+        form,
+        status,
+        description,
+        all.toEntity(),
+        home.toEntity(),
+        away.toEntity(),
+        goalsDiff,
+        points,
+        lastUpdate
+    )
+}
+
+fun HomeMatchesResponse.toEntity(): HomeMatches {
+    return HomeMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
+}
+
+fun AwayMatchesResponse.toEntity(): AwayMatches {
+    return AwayMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
+}
+
+fun AllMatchesResponse.toEntity(): AllMatches {
+    return AllMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
 }

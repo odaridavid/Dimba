@@ -2,7 +2,7 @@ package com.github.odaridavid.dimba.base
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.github.odaridavid.dimba.commons.NetworkUtils
+import com.github.odaridavid.dimba.commons.*
 
 /**
  *
@@ -17,7 +17,7 @@ import com.github.odaridavid.dimba.commons.NetworkUtils
  * the License.
  *
  **/
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<T> : Fragment() {
 
     fun onNetworkChange(block: (Boolean) -> Unit) {
         NetworkUtils.getNetworkStatus(context!!).observe(this, Observer { isConnected ->
@@ -25,4 +25,21 @@ abstract class BaseFragment : Fragment() {
         })
     }
 
+    fun handleState(result: ResultState<T>) {
+        when (result) {
+            is Error -> showOnError(ExceptionHandler(context!!).parse(result.e))
+            is Success -> showOnSuccess(result)
+            is Loading -> showLoading(true)
+        }
+    }
+
+    abstract fun showLoading(isLoading: Boolean)
+
+    open fun showOnSuccess(result: Success<T>) {
+        showLoading(false)
+    }
+
+    open fun showOnError(message: String) {
+        showLoading(false)
+    }
 }

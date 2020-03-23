@@ -13,4 +13,11 @@ package com.github.odaridavid.dimba.models.standings
  * the License.
  *
  **/
-class AwayMatches
+data class AwayMatches(
+    val matchesPlayed: Int,
+    val win: Int,
+    val draw: Int,
+    val lose: Int,
+    val goalsFor: Int,
+    val goalsAgainst: Int
+)

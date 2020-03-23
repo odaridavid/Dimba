@@ -2,6 +2,7 @@ package com.github.odaridavid.dimba.repositories
 
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
+import com.github.odaridavid.dimba.commons.runWithConnection
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.FootballApiService
 
@@ -18,9 +19,11 @@ import com.github.odaridavid.dimba.network.FootballApiService
  * the License.
  *
  **/
-class StandingsRepositoryImpl(api: FootballApiService) : StandingsRepository {
+class StandingsRepositoryImpl(val api: FootballApiService) : StandingsRepository {
 
-    override fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
-        return Success(emptyList())
+    override suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
+        return runWithConnection {
+            Success(emptyList())
+        }
     }
 }
