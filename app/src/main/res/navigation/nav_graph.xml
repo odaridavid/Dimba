@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/leaguesFragment">
 
     <fragment
         android:id="@+id/liveFixturesFragment"
         android:name="com.github.odaridavid.dimba.ui.fixtures.LiveFixturesFragment"
         android:label="fragment_live_fixtures"
         tools:layout="@layout/fragment_live_fixtures" />
-
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.github.odaridavid.dimba.ui.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/leaguesFragment"
+        android:name="com.github.odaridavid.dimba.ui.league.LeaguesFragment"
+        android:label="fragment_leagues"
+        tools:layout="@layout/fragment_leagues" />
 
 </navigation>

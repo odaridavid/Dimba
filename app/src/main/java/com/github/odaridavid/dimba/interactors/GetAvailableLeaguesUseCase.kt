@@ -1,4 +1,6 @@
-package com.github.odaridavid.dimba.models.fixtures
+package com.github.odaridavid.dimba.interactors
+
+import com.github.odaridavid.dimba.repositories.LeaguesRepository
 
 /**
  *
@@ -13,9 +15,5 @@ package com.github.odaridavid.dimba.models.fixtures
  * the License.
  *
  **/
-data class League(
-    val name: String,
-    val country: String,
-    val logo: String?,
-    val flag: String?
-)
+class GetAvailableLeaguesUseCase(val leaguesRepository: LeaguesRepository) {
+}

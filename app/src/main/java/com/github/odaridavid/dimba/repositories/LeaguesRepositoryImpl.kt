@@ -1,4 +1,6 @@
-package com.github.odaridavid.dimba.models.fixtures
+package com.github.odaridavid.dimba.repositories
+
+import com.github.odaridavid.dimba.network.FootballApiService
 
 /**
  *
@@ -13,24 +15,5 @@ package com.github.odaridavid.dimba.models.fixtures
  * the License.
  *
  **/
-data class LiveFixture(
-    val fixtureId: Int,
-    val leagueId: Int,
-    val leagueInfo: LeagueInfo,
-    val eventDate: String,
-    val eventTimestamp: Long,
-    val firstHalfStart: Long,
-    val secondHalfStart: Long,
-    val round: String,
-    val status: String,
-    val statusShort: String,
-    val elapsed: Int,
-    val venue: String,
-    val referee: String?,
-    val homeTeam: Team,
-    val awayTeam: Team,
-    val goalsHomeTeam: Byte,
-    val goalsAwayTeam: Byte,
-    val score: Scores,
-    val events: List<MatchEvents>
-)
+class LeaguesRepositoryImpl(val api: FootballApiService) : LeaguesRepository {
+}

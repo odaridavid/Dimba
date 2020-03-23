@@ -27,6 +27,9 @@ interface FootballApiService {
         @Query("timezone") timezone: String = ZonedDateTime.now().zone.id
     ): FixturesInPlayResponse
 
+    @GET("v2/leagues")
+    suspend fun getAvailableLeagues()
+
     @GET("v2/leagueTable/{id}")
     suspend fun getLeagueStandings(@Path("id") leagueId: Int): StandingsResponse
 }

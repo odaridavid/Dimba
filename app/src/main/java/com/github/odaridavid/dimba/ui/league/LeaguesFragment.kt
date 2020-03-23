@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.ui
+package com.github.odaridavid.dimba.ui.league
 
 import android.os.Bundle
 import android.view.*
@@ -7,11 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.github.odaridavid.dimba.R
 
-/**
- * A simple [Fragment] subclass.
- */
-class HomeFragment : Fragment() {
-
+class LeaguesFragment : Fragment() {
     lateinit var v: View
 
     override fun onCreateView(
@@ -19,7 +15,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        v = inflater.inflate(R.layout.fragment_home, container, false)
+        v = inflater.inflate(R.layout.fragment_leagues, container, false)
         return v
     }
 

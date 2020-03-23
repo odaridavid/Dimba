@@ -1,13 +1,12 @@
 package com.github.odaridavid.dimba.di
 
-import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
+import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
+import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
 import com.github.odaridavid.dimba.network.ApiClient
-import com.github.odaridavid.dimba.repositories.FixturesRepository
-import com.github.odaridavid.dimba.repositories.FixturesRepositoryImpl
-import com.github.odaridavid.dimba.repositories.StandingsRepository
-import com.github.odaridavid.dimba.repositories.StandingsRepositoryImpl
+import com.github.odaridavid.dimba.repositories.*
 import com.github.odaridavid.dimba.ui.fixtures.FixturesViewModel
+import com.github.odaridavid.dimba.ui.league.LeaguesViewModel
 import com.github.odaridavid.dimba.ui.standings.StandingsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -41,13 +40,16 @@ val network = module {
 val data = module {
     factory<FixturesRepository> { FixturesRepositoryImpl(api = get()) }
     factory<StandingsRepository> { StandingsRepositoryImpl(api = get()) }
+    factory<LeaguesRepository> { LeaguesRepositoryImpl(api=get()) }
 }
 
 val viewModel = module {
     viewModel { FixturesViewModel(getLiveFixturesUseCase = get()) }
     viewModel { StandingsViewModel(getStandingsUseCase = get()) }
+    viewModel { LeaguesViewModel(getAvailableLeaguesUseCase = get()) }
 }
 val domain = module {
     factory { GetLiveFixturesUseCase(fixturesRepository = get()) }
     factory { GetStandingsUseCase(standingsRepository = get()) }
+    factory { GetAvailableLeaguesUseCase(leaguesRepository = get()) }
 }

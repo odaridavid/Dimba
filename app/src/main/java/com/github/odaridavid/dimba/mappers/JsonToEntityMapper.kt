@@ -44,8 +44,8 @@ fun LiveFixturesResponse.toEntity(): LiveFixture {
     )
 }
 
-fun LeagueResponse.toEntity(): League {
-    return League(
+fun LeagueResponse.toEntity(): LeagueInfo {
+    return LeagueInfo(
         name,
         country,
         logo,
