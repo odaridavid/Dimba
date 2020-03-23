@@ -44,7 +44,7 @@ class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCa
         }
     }
 
-    fun setError() {
+    fun setNetworkError() {
         _fixtures.value = Error<List<LiveFixture>>(Exception("No Internet Connection"))
     }
 

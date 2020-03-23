@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
+import com.github.odaridavid.dimba.base.BaseFragment
 import com.github.odaridavid.dimba.commons.*
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class LiveFixturesFragment : Fragment() {
+class LiveFixturesFragment : BaseFragment() {
 
     //TODO Check Live Fixture Status Periodically
     //TODO Display Live Fixture Events
@@ -30,13 +30,13 @@ class LiveFixturesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NetworkUtils.getNetworkStatus(context!!).observe(this, Observer { isConnected ->
+        onNetworkChange { isConnected ->
             if (isConnected) {
                 if (fixturesViewModel.fixtures.value is Error) {
                     fixturesViewModel.getFixtures()
                 }
-            } else fixturesViewModel.setError()
-        })
+            } else fixturesViewModel.setNetworkError()
+        }
     }
 
     override fun onResume() {
