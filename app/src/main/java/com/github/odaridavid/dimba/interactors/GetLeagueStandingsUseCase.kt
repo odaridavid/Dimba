@@ -1,8 +1,6 @@
-package com.github.odaridavid.dimba.repositories
+package com.github.odaridavid.dimba.interactors
 
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+import com.github.odaridavid.dimba.repositories.StandingsRepository
 
 /**
  *
@@ -17,8 +15,4 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
-
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
-
-}
+class GetLeagueStandingsUseCase(val standingsRepository: StandingsRepository)

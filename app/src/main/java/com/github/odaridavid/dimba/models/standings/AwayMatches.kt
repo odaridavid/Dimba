@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.standings
 
 /**
  *
@@ -13,9 +13,4 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class Scores(
-    val halfTime: String,
-    val fullTime: String?,
-    val extraTime: String?,
-    val penalty: String?
-)
+class AwayMatches

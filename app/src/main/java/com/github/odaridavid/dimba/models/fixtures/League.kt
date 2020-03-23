@@ -1,8 +1,4 @@
-package com.github.odaridavid.dimba.repositories
-
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+package com.github.odaridavid.dimba.models.fixtures
 
 /**
  *
@@ -17,8 +13,9 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
-
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
-
-}
+data class League(
+    val name: String,
+    val country: String,
+    val logo: String?,
+    val flag: String?
+)

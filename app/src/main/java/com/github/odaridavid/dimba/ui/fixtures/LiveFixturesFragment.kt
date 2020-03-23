@@ -12,7 +12,7 @@ import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.NoInternetConnectionException
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
-import com.github.odaridavid.dimba.models.LiveFixture
+import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.ConnectException

@@ -1,8 +1,7 @@
-package com.github.odaridavid.dimba.repositories
+package com.github.odaridavid.dimba.commons
 
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+import android.content.SharedPreferences
+import java.net.ConnectException
 
 /**
  *
@@ -17,8 +16,19 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
 
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
-
+suspend fun <T> runWithConnection(
+    sharedPreference: SharedPreferences,
+    execute:suspend () -> ResultState<T>
+): ResultState<T> {
+    val isConnected = sharedPreference.getBoolean(Constants.PREF_KEY_NETWORK_AVAILABLE, false)
+    return if (isConnected) {
+        try {
+            execute()
+        } catch (e: ConnectException) {
+            Error<T>(e)
+        }
+    } else {
+        Error<T>(NoInternetConnectionException)
+    }
 }

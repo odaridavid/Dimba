@@ -1,15 +1,12 @@
 package com.github.odaridavid.dimba.repositories
 
 import android.content.SharedPreferences
-import com.github.odaridavid.dimba.commons.Constants
-import com.github.odaridavid.dimba.commons.NoInternetConnectionException
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
+import com.github.odaridavid.dimba.commons.runWithConnection
 import com.github.odaridavid.dimba.mappers.toEntity
-import com.github.odaridavid.dimba.models.LiveFixture
+import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import com.github.odaridavid.dimba.network.FootballApiService
-import com.github.odaridavid.dimba.commons.Error
-import java.net.ConnectException
 
 /**
  *
@@ -30,21 +27,14 @@ class FixturesRepositoryImpl(
 ) : FixturesRepository {
 
     override suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
-        val isConnected = sharedPreferences.getBoolean(Constants.PREF_KEY_NETWORK_AVAILABLE, false)
-        return if (isConnected) {
-            try {
-                val response = api.getFixturesInPlay()
-                if (response.api.results == 0)
-                    Success(emptyList())
-                else {
-                    val fixtures = response.api.fixtures
-                    Success(fixtures.map { it.toEntity() })
-                }
-            } catch (e: ConnectException) {
-                Error<List<LiveFixture>>(e)
+        return runWithConnection(sharedPreferences) {
+            val response = api.getFixturesInPlay()
+            if (response.api.results == 0)
+                Success(emptyList())
+            else {
+                val fixtures = response.api.fixtures
+                Success(fixtures.map { it.toEntity() })
             }
-        } else {
-            Error<List<LiveFixture>>(NoInternetConnectionException)
         }
     }
 

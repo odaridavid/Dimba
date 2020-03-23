@@ -1,4 +1,7 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.repositories
+
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 
 /**
  *
@@ -13,16 +16,7 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class MatchEvents(
-    val elapsed: Int,
-    val elapsedPlus: Int,
-    val teamId: Int,
-    val teamName: String,
-    val playerId: Int,
-    val player: String,
-    val assistId: Int,
-    val assist: String?,
-    val type: String,
-    val detail: String,
-    val comments: String?
-)
+interface StandingsRepository {
+
+    fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>>
+}

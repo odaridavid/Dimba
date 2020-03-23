@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.standings
 
 /**
  *
@@ -13,9 +13,4 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class League(
-    val name: String,
-    val country: String,
-    val logo: String?,
-    val flag: String?
-)
+class AllMatches

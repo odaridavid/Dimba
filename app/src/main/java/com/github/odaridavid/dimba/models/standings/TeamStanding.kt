@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.standings
 
 /**
  *
@@ -13,8 +13,5 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class Team(
-    val id: Int,
-    val name: String,
-    val logo: String
-)
+class TeamStanding
+

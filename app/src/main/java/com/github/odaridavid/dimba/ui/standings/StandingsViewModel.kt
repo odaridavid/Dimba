@@ -1,8 +1,7 @@
-package com.github.odaridavid.dimba.repositories
+package com.github.odaridavid.dimba.ui.standings
 
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+import androidx.lifecycle.ViewModel
+import com.github.odaridavid.dimba.interactors.GetLeagueStandingsUseCase
 
 /**
  *
@@ -17,8 +16,5 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
-
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
-
+class StandingsViewModel(getLeagueStandingsUseCase: GetLeagueStandingsUseCase) : ViewModel() {
 }

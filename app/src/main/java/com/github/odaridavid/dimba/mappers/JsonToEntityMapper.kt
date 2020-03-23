@@ -1,6 +1,6 @@
 package com.github.odaridavid.dimba.mappers
 
-import com.github.odaridavid.dimba.models.*
+import com.github.odaridavid.dimba.models.fixtures.*
 import com.github.odaridavid.dimba.network.model.*
 
 /**
@@ -41,12 +41,24 @@ fun LiveFixturesResponse.toEntity(): LiveFixture {
 }
 
 fun LeagueResponse.toEntity(): League {
-    return League(name, country, logo, flag)
+    return League(
+        name,
+        country,
+        logo,
+        flag
+    )
 }
 
-fun TeamResponse.toEntity(): Team = Team(id, name, logo)
+fun TeamResponse.toEntity(): Team =
+    Team(id, name, logo)
 
-fun ScoresResponse.toEntity(): Scores = Scores(halfTime, fullTime, extraTime, penalty)
+fun ScoresResponse.toEntity(): Scores =
+    Scores(
+        halfTime,
+        fullTime,
+        extraTime,
+        penalty
+    )
 
 fun EventsResponse.toEntity(): MatchEvents {
     return MatchEvents(

@@ -1,8 +1,9 @@
 package com.github.odaridavid.dimba.repositories
 
 import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+import com.github.odaridavid.dimba.commons.Success
+import com.github.odaridavid.dimba.models.standings.TeamStanding
+import com.github.odaridavid.dimba.network.FootballApiService
 
 /**
  *
@@ -17,8 +18,9 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
+class StandingsRepositoryImpl(api: FootballApiService) : StandingsRepository {
 
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
-
+    override fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
+        return Success(emptyList())
+    }
 }

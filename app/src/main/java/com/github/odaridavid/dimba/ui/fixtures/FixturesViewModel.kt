@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
-import com.github.odaridavid.dimba.models.LiveFixture
+import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
