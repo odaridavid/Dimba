@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.odaridavid.dimba.commons.Loading
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
 import com.github.odaridavid.dimba.models.leagues.League
@@ -36,6 +37,7 @@ class LeaguesViewModel(private val getAvailableLeaguesUseCase: GetAvailableLeagu
     }
 
     fun getAllAvailableLeagues() {
+        _leagues.value = Loading<List<League>>()
         viewModelScope.launch(Dispatchers.IO) {
             _leagues.postValue(getAvailableLeaguesUseCase.invoke())
         }

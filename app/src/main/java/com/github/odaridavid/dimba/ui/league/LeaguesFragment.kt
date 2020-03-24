@@ -8,8 +8,10 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.base.BaseFragment
+import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
+import com.github.odaridavid.dimba.commons.showToast
 import com.github.odaridavid.dimba.models.leagues.League
 import kotlinx.android.synthetic.main.fragment_leagues.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,6 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LeaguesFragment : BaseFragment<List<League>>() {
 
     //TODO Navigate from league to team standings in league
+    //TODO Fix on no connectioin retry not working
     private val leaguesViewModel: LeaguesViewModel by viewModel()
 
     private lateinit var rootView: View
