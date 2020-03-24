@@ -22,7 +22,7 @@ data class FixturesInPlayApiResult(val results: Int, val fixtures: List<LiveFixt
 data class LiveFixturesResponse(
     @field:Json(name = "fixture_id") val fixtureId: Int,
     @field:Json(name = "league_id") val leagueId: Int,
-    val league: LeagueResponse,
+    val league: LiveFixtureLeagueResponse,
     @field:Json(name = "event_date") val eventDate: String,
     @field:Json(name = "event_timestamp") val eventTimestamp: Long,
     val firstHalfStart: Long?,
@@ -41,7 +41,7 @@ data class LiveFixturesResponse(
     val events: List<EventsResponse>
 )
 
-data class LeagueResponse(
+data class LiveFixtureLeagueResponse(
     val name: String,
     val country: String,
     val logo: String?,

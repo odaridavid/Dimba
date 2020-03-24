@@ -14,6 +14,15 @@
         android:id="@+id/leaguesFragment"
         android:name="com.github.odaridavid.dimba.ui.league.LeaguesFragment"
         android:label="fragment_leagues"
-        tools:layout="@layout/fragment_leagues" />
+        tools:layout="@layout/fragment_leagues" >
+        <action
+            android:id="@+id/action_leaguesFragment_to_standingsFragment"
+            app:destination="@id/standingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/standingsFragment"
+        android:name="com.github.odaridavid.dimba.ui.standings.StandingsFragment"
+        android:label="fragment_standings"
+        tools:layout="@layout/fragment_standings" />
 
 </navigation>

@@ -1,5 +1,10 @@
 package com.github.odaridavid.dimba.repositories
 
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.commons.Success
+import com.github.odaridavid.dimba.commons.executeNonBlocking
+import com.github.odaridavid.dimba.mappers.toEntity
+import com.github.odaridavid.dimba.models.leagues.League
 import com.github.odaridavid.dimba.network.FootballApiService
 
 /**
@@ -16,4 +21,18 @@ import com.github.odaridavid.dimba.network.FootballApiService
  *
  **/
 class LeaguesRepositoryImpl(val api: FootballApiService) : LeaguesRepository {
+
+    override suspend fun getAvailableLeagues(): ResultState<List<League>> {
+        //TODO Check if leagues are available locally,if not load from network and save to room
+        //TODO Update Leagues either periodically or force refresh on request or if data is stale based on date
+        return executeNonBlocking {
+            val response = api.getAvailableLeagues()
+            if (response.api.results == 0)
+                Success(emptyList<League>())
+            else {
+                val leagues = response.api.leagues
+                Success(leagues.map { it.toEntity() })
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.github.odaridavid.dimba.network
 
 import com.github.odaridavid.dimba.network.model.FixturesInPlayResponse
+import com.github.odaridavid.dimba.network.model.LeaguesResponse
 import com.github.odaridavid.dimba.network.model.StandingsResponse
 import org.threeten.bp.ZonedDateTime
 import retrofit2.http.GET
@@ -28,7 +29,7 @@ interface FootballApiService {
     ): FixturesInPlayResponse
 
     @GET("v2/leagues")
-    suspend fun getAvailableLeagues()
+    suspend fun getAvailableLeagues(): LeaguesResponse
 
     @GET("v2/leagueTable/{id}")
     suspend fun getLeagueStandings(@Path("id") leagueId: Int): StandingsResponse

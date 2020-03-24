@@ -28,7 +28,6 @@
         android:drawableTop="@drawable/ic_error"
         android:drawablePadding="@dimen/default_padding"
         android:padding="@dimen/default_padding"
-        android:text="@string/no_live_fixtures"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:visibility="gone"
         app:drawableTint="?colorSecondary"

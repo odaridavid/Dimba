@@ -1,5 +1,8 @@
 package com.github.odaridavid.dimba.repositories
 
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.leagues.League
+
 /**
  *
  * Copyright 2020 David Odari
@@ -14,4 +17,6 @@ package com.github.odaridavid.dimba.repositories
  *
  **/
 interface LeaguesRepository {
+
+    suspend fun getAvailableLeagues(): ResultState<List<League>>
 }

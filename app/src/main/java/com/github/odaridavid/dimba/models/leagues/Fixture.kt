@@ -1,5 +1,7 @@
 package com.github.odaridavid.dimba.models.leagues
 
+import com.squareup.moshi.Json
+
 /**
  *
  * Copyright 2020 David Odari
@@ -13,18 +15,9 @@ package com.github.odaridavid.dimba.models.leagues
  * the License.
  *
  **/
-data class League(
-    val leagueId: Int,
-    val name: String,
-    val type: String,
-    val country: String,
-    val countryCode: String,
-    val season: Int,
-    val seasonStart: String,
-    val seasonEnd: String,
-    val logo: String?,
-    val flag: String?,
-    val standings: Int,
-    val isCurrent: Int,
-    val coverage: Coverage
+data class Fixture(
+    val events: Boolean,
+    val lineups: Boolean,
+    val statistics: Boolean,
+    @field:Json(name = "player_statistics") val playersStatistics: Boolean
 )

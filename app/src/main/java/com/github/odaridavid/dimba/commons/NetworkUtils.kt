@@ -48,7 +48,7 @@ object NetworkUtils {
 
 }
 
-suspend fun <T> runWithConnection(
+suspend fun <T> executeNonBlocking(
     execute: suspend () -> ResultState<T>
 ): ResultState<T> {
     return try {

@@ -1,5 +1,7 @@
 package com.github.odaridavid.dimba.interactors
 
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.leagues.League
 import com.github.odaridavid.dimba.repositories.LeaguesRepository
 
 /**
@@ -16,4 +18,8 @@ import com.github.odaridavid.dimba.repositories.LeaguesRepository
  *
  **/
 class GetAvailableLeaguesUseCase(val leaguesRepository: LeaguesRepository) {
+
+    suspend operator fun invoke(): ResultState<List<League>> {
+        return leaguesRepository.getAvailableLeagues()
+    }
 }

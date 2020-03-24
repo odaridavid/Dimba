@@ -32,11 +32,9 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onNetworkChange { isConnected ->
-            if (isConnected) {
-                if (fixturesViewModel.fixtures.value is Error) {
-                    fixturesViewModel.getFixtures()
-                }
-            } else fixturesViewModel.setNetworkError()
+            if (isConnected && fixturesViewModel.fixtures.value is Error) {
+                fixturesViewModel.getFixtures()
+            }
         }
     }
 
@@ -66,9 +64,11 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     override fun showOnSuccess(result: Success<List<LiveFixture>>) {
         super.showOnSuccess(result)
         val liveFixtures = result.data
-        if (liveFixtures.isEmpty()) {
-            no_live_fixtures_text_view.isVisible(true)
-        } else setupRecyclerView(liveFixtures)
+        if (liveFixtures.isEmpty()) showOnEmpty() else setupRecyclerView(liveFixtures)
+    }
+
+    private fun showOnEmpty() {
+        no_live_fixtures_text_view.isVisible(true)
     }
 
     private fun setupRecyclerView(liveFixtures: List<LiveFixture>) {

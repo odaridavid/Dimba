@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.Loading
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 /**
  *
@@ -26,7 +24,8 @@ import java.lang.Exception
  * the License.
  *
  **/
-class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCase) : ViewModel() {
+class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCase) :
+    ViewModel() {
 
     private val _fixtures = MutableLiveData<ResultState<List<LiveFixture>>>()
 
@@ -43,10 +42,5 @@ class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCa
             _fixtures.postValue(getLiveFixturesUseCase.invoke())
         }
     }
-
-    fun setNetworkError() {
-        _fixtures.value = Error<List<LiveFixture>>(Exception("No Internet Connection"))
-    }
-
 
 }

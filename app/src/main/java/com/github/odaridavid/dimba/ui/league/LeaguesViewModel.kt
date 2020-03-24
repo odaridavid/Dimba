@@ -1,7 +1,14 @@
 package com.github.odaridavid.dimba.ui.league
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
+import com.github.odaridavid.dimba.models.leagues.League
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  *
@@ -16,5 +23,22 @@ import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
  * the License.
  *
  **/
-class LeaguesViewModel(val getAvailableLeaguesUseCase: GetAvailableLeaguesUseCase) : ViewModel() {
+class LeaguesViewModel(private val getAvailableLeaguesUseCase: GetAvailableLeaguesUseCase) :
+    ViewModel() {
+
+    private val _leagues = MutableLiveData<ResultState<List<League>>>()
+
+    val leagues: LiveData<ResultState<List<League>>>
+        get() = _leagues
+
+    init {
+        getAllAvailableLeagues()
+    }
+
+    fun getAllAvailableLeagues() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _leagues.postValue(getAvailableLeaguesUseCase.invoke())
+        }
+    }
+
 }

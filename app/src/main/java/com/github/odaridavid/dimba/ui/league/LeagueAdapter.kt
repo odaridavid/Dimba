@@ -3,9 +3,12 @@ package com.github.odaridavid.dimba.ui.league;
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.models.leagues.League
 
@@ -35,19 +38,28 @@ class LeagueAdapter : ListAdapter<League, LeagueAdapter.LeagueViewHolder>(League
 
     inner class LeagueViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(item: League) {
+        fun bind(league: League) {
+            with(view) {
+                val ivLeagueIcon = findViewById<ImageView>(R.id.league_icon_image_view)
+                ivLeagueIcon.contentDescription = "${league.name} icon"
+                ivLeagueIcon.load(league.logo) {
+                    placeholder(R.drawable.ic_league)
+                }
 
+                val tvLeagueName = findViewById<TextView>(R.id.league_name_text_view)
+                tvLeagueName.text = league.name
+            }
         }
     }
 
     companion object {
         val LeagueDiffUtil = object : DiffUtil.ItemCallback<League>() {
             override fun areItemsTheSame(oldItem: League, newItem: League): Boolean {
-               return false
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: League, newItem: League): Boolean {
-                return false
+                return oldItem.leagueId == newItem.leagueId && oldItem.seasonStart == newItem.seasonStart
             }
         }
     }

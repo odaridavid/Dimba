@@ -13,18 +13,11 @@ package com.github.odaridavid.dimba.models.leagues
  * the License.
  *
  **/
-data class League(
-    val leagueId: Int,
-    val name: String,
-    val type: String,
-    val country: String,
-    val countryCode: String,
-    val season: Int,
-    val seasonStart: String,
-    val seasonEnd: String,
-    val logo: String?,
-    val flag: String?,
-    val standings: Int,
-    val isCurrent: Int,
-    val coverage: Coverage
+data class Coverage(
+    val standings: Boolean,
+    val fixture: Fixture,
+    val players: Boolean,
+    val topScorers: Boolean,
+    val predictions: Boolean,
+    val odds: Boolean
 )

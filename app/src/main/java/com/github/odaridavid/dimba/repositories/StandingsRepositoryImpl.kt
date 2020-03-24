@@ -2,7 +2,7 @@ package com.github.odaridavid.dimba.repositories
 
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
-import com.github.odaridavid.dimba.commons.runWithConnection
+import com.github.odaridavid.dimba.commons.executeNonBlocking
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.FootballApiService
 
@@ -22,8 +22,8 @@ import com.github.odaridavid.dimba.network.FootballApiService
 class StandingsRepositoryImpl(val api: FootballApiService) : StandingsRepository {
 
     override suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
-        return runWithConnection {
-            Success(emptyList())
+        return executeNonBlocking {
+            Success(emptyList<List<TeamStanding>>())
         }
     }
 }

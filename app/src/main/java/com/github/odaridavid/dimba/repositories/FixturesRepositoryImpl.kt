@@ -2,7 +2,7 @@ package com.github.odaridavid.dimba.repositories
 
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
-import com.github.odaridavid.dimba.commons.runWithConnection
+import com.github.odaridavid.dimba.commons.executeNonBlocking
 import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import com.github.odaridavid.dimba.network.FootballApiService
@@ -25,7 +25,7 @@ class FixturesRepositoryImpl(
 ) : FixturesRepository {
 
     override suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
-        return runWithConnection {
+        return executeNonBlocking {
             val response = api.getFixturesInPlay()
             if (response.api.results == 0)
                 Success(emptyList())
