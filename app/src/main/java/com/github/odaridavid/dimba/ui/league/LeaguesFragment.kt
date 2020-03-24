@@ -11,7 +11,6 @@ import com.github.odaridavid.dimba.base.BaseFragment
 import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
-import com.github.odaridavid.dimba.commons.showToast
 import com.github.odaridavid.dimba.models.leagues.League
 import kotlinx.android.synthetic.main.fragment_leagues.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
