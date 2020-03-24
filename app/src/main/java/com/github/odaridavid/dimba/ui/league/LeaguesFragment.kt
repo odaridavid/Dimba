@@ -19,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LeaguesFragment : BaseFragment<List<League>>() {
 
     //TODO Navigate from league to team standings in league
-    //TODO Fix on no connectioin retry not working
     private val leaguesViewModel: LeaguesViewModel by viewModel()
 
     private lateinit var rootView: View
