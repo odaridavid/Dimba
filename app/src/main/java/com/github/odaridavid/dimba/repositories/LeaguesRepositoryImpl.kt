@@ -3,6 +3,7 @@ package com.github.odaridavid.dimba.repositories
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.executeNonBlocking
+import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.leagues.League
 import com.github.odaridavid.dimba.network.FootballApiService
@@ -20,7 +21,8 @@ import com.github.odaridavid.dimba.network.FootballApiService
  * the License.
  *
  **/
-class LeaguesRepositoryImpl(val api: FootballApiService) : LeaguesRepository {
+class LeaguesRepositoryImpl(val api: FootballApiService, val leaguesDao: LeaguesDao) :
+    LeaguesRepository {
 
     override suspend fun getAvailableLeagues(): ResultState<List<League>> {
         //TODO Check if leagues are available locally,if not load from network and save to room

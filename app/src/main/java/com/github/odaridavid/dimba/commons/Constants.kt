@@ -15,7 +15,5 @@ package com.github.odaridavid.dimba.commons
  **/
 object Constants {
     const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
-    //Preferences
-    const val APP_PREF_KEY ="dimba_pref"
-    const val PREF_KEY_NETWORK_AVAILABLE = "network_availability"
+    const val APP_DATABASE_NAME="dimba_db"
 }

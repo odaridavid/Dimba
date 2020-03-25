@@ -1,5 +1,8 @@
 package com.github.odaridavid.dimba.models.leagues
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  *
  * Copyright 2020 David Odari
@@ -13,7 +16,10 @@ package com.github.odaridavid.dimba.models.leagues
  * the License.
  *
  **/
+@Entity(tableName = "leagues")
 data class League(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
     val leagueId: Int,
     val name: String,
     val type: String,
@@ -25,6 +31,5 @@ data class League(
     val logo: String?,
     val flag: String?,
     val standings: Int,
-    val isCurrent: Int,
-    val coverage: Coverage
+    val isCurrent: Int
 )

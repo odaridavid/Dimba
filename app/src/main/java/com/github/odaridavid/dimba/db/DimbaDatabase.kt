@@ -1,5 +1,9 @@
 package com.github.odaridavid.dimba.db
 
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import com.github.odaridavid.dimba.models.leagues.League
+
 /**
  *
  * Copyright 2020 David Odari
@@ -13,6 +17,7 @@ package com.github.odaridavid.dimba.db
  * the License.
  *
  **/
-class DimbaDatabase {
-    //TODO("Implementation")
+@Database(entities = [League::class], version = 1, exportSchema = false)
+abstract class DimbaDatabase : RoomDatabase() {
+    abstract fun leagueDao(): LeaguesDao
 }

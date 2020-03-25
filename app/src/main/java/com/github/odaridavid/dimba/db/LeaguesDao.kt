@@ -1,4 +1,11 @@
-package com.github.odaridavid.dimba.models.leagues
+package com.github.odaridavid.dimba.db
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.github.odaridavid.dimba.models.leagues.League
 
 /**
  *
@@ -13,11 +20,16 @@ package com.github.odaridavid.dimba.models.leagues
  * the License.
  *
  **/
-data class Coverage(
-    val standings: Boolean,
-    val fixture: Fixture,
-    val players: Boolean,
-    val topScorers: Boolean,
-    val predictions: Boolean,
-    val odds: Boolean
-)
+@Dao
+interface LeaguesDao {
+
+    @Query("SELECT * FROM leagues")
+    fun loadAllLeagues(): LiveData<List<League>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLeagues(league: List<League>)
+
+    @Query("DELETE FROM leagues")
+    fun deleteAllLeagues()
+
+}
