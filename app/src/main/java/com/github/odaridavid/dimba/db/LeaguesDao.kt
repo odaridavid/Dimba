@@ -24,7 +24,7 @@ import com.github.odaridavid.dimba.models.leagues.League
 interface LeaguesDao {
 
     @Query("SELECT * FROM leagues")
-    fun loadAllLeagues(): LiveData<List<League>>
+    fun loadAllLeagues(): List<League>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLeagues(league: List<League>)

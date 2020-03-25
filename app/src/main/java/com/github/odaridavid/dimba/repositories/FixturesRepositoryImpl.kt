@@ -24,6 +24,7 @@ class FixturesRepositoryImpl(
     private val api: FootballApiService
 ) : FixturesRepository {
 
+    //TODO Check Live Fixture Status Periodically
     override suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
         return executeNonBlocking {
             val response = api.getFixturesInPlay()

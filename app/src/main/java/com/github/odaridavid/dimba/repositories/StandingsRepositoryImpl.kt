@@ -21,6 +21,7 @@ import com.github.odaridavid.dimba.network.FootballApiService
  **/
 class StandingsRepositoryImpl(val api: FootballApiService) : StandingsRepository {
 
+    //TODO Load Standings for selected League
     override suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
         return executeNonBlocking {
             Success(emptyList<List<TeamStanding>>())

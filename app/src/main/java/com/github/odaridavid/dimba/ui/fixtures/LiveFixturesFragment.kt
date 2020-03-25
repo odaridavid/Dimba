@@ -13,13 +13,13 @@ import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
 
-    //TODO Check Live Fixture Status Periodically
     //TODO Display Live Fixture Events
     private val fixturesViewModel: FixturesViewModel by viewModel()
 
@@ -75,7 +75,7 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     private fun setupRecyclerView(liveFixtures: List<LiveFixture>) {
         live_fixtures_recycler_view.layoutManager = LinearLayoutManager(context)
         val adapter = setupLiveFixtureAdapter(liveFixtures)
-        live_fixtures_recycler_view.adapter = AlphaInAnimationAdapter(adapter)
+        live_fixtures_recycler_view.adapter = ScaleInAnimationAdapter(adapter)
     }
 
     private fun setupLiveFixtureAdapter(liveFixtures: List<LiveFixture>): LiveFixturesAdapter {
