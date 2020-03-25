@@ -62,15 +62,8 @@ class LeaguesFragment : BaseFragment<List<League>>() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        league_progress_bar.isVisible(isLoading)
-        error_text_view.isVisible(false)
+        super.showLoading(isLoading)
         no_leagues_text_view.isVisible(false)
-    }
-
-    override fun showOnError(message: String) {
-        super.showOnError(message)
-        error_text_view.text = message
-        error_text_view.isVisible(true)
     }
 
     override fun showOnSuccess(result: Success<List<League>>) {

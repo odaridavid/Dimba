@@ -3,6 +3,8 @@ package com.github.odaridavid.dimba.base
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.odaridavid.dimba.commons.*
+import kotlinx.android.synthetic.main.errorview.*
+import kotlinx.android.synthetic.main.progressbar.*
 
 /**
  *
@@ -33,13 +35,18 @@ abstract class BaseFragment<T> : Fragment() {
         }
     }
 
-    abstract fun showLoading(isLoading: Boolean)
+    open fun showLoading(isLoading: Boolean) {
+        dimba_progress_bar.isVisible(isLoading)
+        error_text_view.isVisible(false)
+    }
 
     open fun showOnSuccess(result: Success<T>) {
         showLoading(false)
     }
 
-    open fun showOnError(message: String) {
+    fun showOnError(message: String) {
         showLoading(false)
+        error_text_view.text = message
+        error_text_view.isVisible(true)
     }
 }

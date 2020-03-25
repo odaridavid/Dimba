@@ -43,12 +43,6 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
         observeLiveFixtures()
     }
 
-    override fun showOnError(message: String) {
-        super.showOnError(message)
-        error_text_view.text = message
-        error_text_view.isVisible(true)
-    }
-
     private fun observeLiveFixtures() {
         fixturesViewModel.fixtures.observe(this, Observer { result ->
             handleState(result)
@@ -56,9 +50,8 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        live_fixtures_progress_bar.isVisible(isLoading)
+        super.showLoading(isLoading)
         no_live_fixtures_text_view.isVisible(false)
-        error_text_view.isVisible(false)
     }
 
     override fun showOnSuccess(result: Success<List<LiveFixture>>) {

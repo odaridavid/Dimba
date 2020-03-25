@@ -13,7 +13,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StandingsFragment : BaseFragment<List<List<TeamStanding>>>() {
 
-    //TODO Layout/View Reuse for loading and error states
     private val standingsViewModel: StandingsViewModel by viewModel()
 
     override fun onCreateView(
@@ -35,11 +34,7 @@ class StandingsFragment : BaseFragment<List<List<TeamStanding>>>() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-
-    }
-
-    override fun showOnError(message: String) {
-        super.showOnError(message)
+        super.showLoading(isLoading)
     }
 
     override fun showOnSuccess(result: Success<List<List<TeamStanding>>>) {
