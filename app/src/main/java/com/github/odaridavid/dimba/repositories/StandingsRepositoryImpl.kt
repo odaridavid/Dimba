@@ -3,8 +3,7 @@ package com.github.odaridavid.dimba.repositories
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.executeNonBlocking
-import com.github.odaridavid.dimba.mappers.toEntity
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.FootballApiService
 
 /**
@@ -20,20 +19,11 @@ import com.github.odaridavid.dimba.network.FootballApiService
  * the License.
  *
  **/
-class FixturesRepositoryImpl(
-    private val api: FootballApiService
-) : FixturesRepository {
+class StandingsRepositoryImpl(val api: FootballApiService) : StandingsRepository {
 
-    override suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
+    override suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
         return executeNonBlocking {
-            val response = api.getFixturesInPlay()
-            if (response.api.results == 0)
-                Success(emptyList())
-            else {
-                val fixtures = response.api.fixtures
-                Success(fixtures.map { it.toEntity() })
-            }
+            Success(emptyList<List<TeamStanding>>())
         }
     }
-
 }

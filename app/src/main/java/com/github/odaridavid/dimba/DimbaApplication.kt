@@ -1,8 +1,16 @@
 package com.github.odaridavid.dimba
 
 import android.app.Application
-import com.github.odaridavid.dimba.di.*
+import coil.Coil
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.util.CoilUtils
+import com.github.odaridavid.dimba.di.data
+import com.github.odaridavid.dimba.di.domain
+import com.github.odaridavid.dimba.di.network
+import com.github.odaridavid.dimba.di.viewModel
 import com.jakewharton.threetenabp.AndroidThreeTen
+import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -32,7 +40,21 @@ class DimbaApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DimbaApplication)
-            modules(listOf(network, data, viewModel, domain, framework))
+            modules(listOf(network, data, viewModel, domain))
+        }
+
+        Coil.setDefaultImageLoader {
+            ImageLoader(applicationContext) {
+                crossfade(true)
+                okHttpClient {
+                    OkHttpClient.Builder()
+                        .cache(CoilUtils.createDefaultCache(applicationContext))
+                        .build()
+                }
+                componentRegistry {
+                    add(SvgDecoder(applicationContext))
+                }
+            }
         }
 
         AndroidThreeTen.init(this)

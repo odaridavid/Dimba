@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.standings.StandingsFragment">
 
     <TextView
-        android:id="@+id/no_live_fixtures_text_view"
+        android:id="@+id/no_standings_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_live"
+        android:drawableTop="@drawable/ic_standing"
         android:drawablePadding="@dimen/default_padding"
         android:padding="@dimen/default_padding"
-        android:text="@string/no_live_fixtures"
+        android:text="@string/no_team_standings"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:visibility="gone"
         app:drawableTint="?colorSecondary"
@@ -37,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/live_fixtures_progress_bar"
+        android:id="@+id/team_standing_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,14 +47,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/live_fixtures_recycler_view"
+        android:id="@+id/team_standing_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="3"
-        tools:listitem="@layout/item_live_fixture" />
-
+        tools:listitem="@layout/item_team_standing" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

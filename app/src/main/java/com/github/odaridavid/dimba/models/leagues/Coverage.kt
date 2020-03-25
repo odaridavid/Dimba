@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.leagues
 
 /**
  *
@@ -13,16 +13,11 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class MatchEvents(
-    val elapsed: Int,
-    val elapsedPlus: Int,
-    val teamId: Int,
-    val teamName: String,
-    val playerId: Int,
-    val player: String,
-    val assistId: Int,
-    val assist: String?,
-    val type: String,
-    val detail: String,
-    val comments: String?
+data class Coverage(
+    val standings: Boolean,
+    val fixture: Fixture,
+    val players: Boolean,
+    val topScorers: Boolean,
+    val predictions: Boolean,
+    val odds: Boolean
 )

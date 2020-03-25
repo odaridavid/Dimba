@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.models.leagues
 
 /**
  *
@@ -13,10 +13,18 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-sealed class ResultState<out T>
-
-class Success<out T>(val data: T) : ResultState<T>()
-
-class Error<T>(val e: Exception) : ResultState<T>()
-
-class Loading<T> : ResultState<T>()
+data class League(
+    val leagueId: Int,
+    val name: String,
+    val type: String,
+    val country: String,
+    val countryCode: String,
+    val season: Int,
+    val seasonStart: String,
+    val seasonEnd: String,
+    val logo: String?,
+    val flag: String?,
+    val standings: Int,
+    val isCurrent: Int,
+    val coverage: Coverage
+)

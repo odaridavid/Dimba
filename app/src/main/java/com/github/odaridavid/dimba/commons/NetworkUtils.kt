@@ -1,13 +1,13 @@
 package com.github.odaridavid.dimba.commons
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.Network
-import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
-import com.github.odaridavid.dimba.commons.Constants.PREF_KEY_NETWORK_AVAILABLE
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import java.net.ConnectException
+import java.net.UnknownHostException
 
 /**
  *
@@ -24,41 +24,39 @@ import com.github.odaridavid.dimba.commons.Constants.PREF_KEY_NETWORK_AVAILABLE
  **/
 object NetworkUtils {
 
-    fun registerNetworkCallBack(context: Context, callback: ConnectivityManager.NetworkCallback) {
+    fun getNetworkStatus(
+        context: Context
+    ): LiveData<Boolean> {
+        val isAvailableLiveData = MutableLiveData<Boolean>()
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val nr = NetworkRequest.Builder()
-            .addTransportType(NetworkCapabilities.TRANSPORT_BLUETOOTH)
-            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-            .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
-            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
-        if (Build.VERSION.SDK_INT >= 26)
-            nr.addTransportType(NetworkCapabilities.TRANSPORT_WIFI_AWARE)
+        cm.registerNetworkCallback(nr.build(), object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                isAvailableLiveData.postValue(true)
+            }
 
-        if (Build.VERSION.SDK_INT >= 27)
-            nr.addTransportType(NetworkCapabilities.TRANSPORT_LOWPAN)
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                isAvailableLiveData.postValue(false)
 
-        cm.registerNetworkCallback(nr.build(), callback)
+            }
+        })
+        return isAvailableLiveData
     }
 
 }
 
-class NetworkCallback(val sharedPreferences: SharedPreferences) :
-    ConnectivityManager.NetworkCallback() {
-
-    var editor: SharedPreferences.Editor = sharedPreferences.edit()
-
-    override fun onAvailable(network: Network) {
-        super.onAvailable(network)
-        editor.putBoolean(PREF_KEY_NETWORK_AVAILABLE, true)
-        editor.apply()
+suspend fun <T> executeNonBlocking(
+    execute: suspend () -> ResultState<T>
+): ResultState<T> {
+    return try {
+        execute()
+    } catch (e: UnknownHostException) {
+        Error<T>(e)
+    } catch (e: ConnectException) {
+        Error<T>(e)
     }
-
-    override fun onLost(network: Network) {
-        super.onLost(network)
-        editor.putBoolean(PREF_KEY_NETWORK_AVAILABLE,false)
-        editor.apply()
-    }
-
 
 }

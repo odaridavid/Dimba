@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.models.fixtures
 
 /**
  *
@@ -13,10 +13,8 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-sealed class ResultState<out T>
-
-class Success<out T>(val data: T) : ResultState<T>()
-
-class Error<T>(val e: Exception) : ResultState<T>()
-
-class Loading<T> : ResultState<T>()
+data class Team(
+    val id: Int,
+    val name: String,
+    val logo: String
+)

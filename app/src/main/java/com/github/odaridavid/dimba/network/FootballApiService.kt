@@ -1,8 +1,11 @@
 package com.github.odaridavid.dimba.network
 
 import com.github.odaridavid.dimba.network.model.FixturesInPlayResponse
+import com.github.odaridavid.dimba.network.model.LeaguesResponse
+import com.github.odaridavid.dimba.network.model.StandingsResponse
 import org.threeten.bp.ZonedDateTime
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -25,4 +28,9 @@ interface FootballApiService {
         @Query("timezone") timezone: String = ZonedDateTime.now().zone.id
     ): FixturesInPlayResponse
 
+    @GET("v2/leagues")
+    suspend fun getAvailableLeagues(): LeaguesResponse
+
+    @GET("v2/leagueTable/{id}")
+    suspend fun getLeagueStandings(@Path("id") leagueId: Int): StandingsResponse
 }

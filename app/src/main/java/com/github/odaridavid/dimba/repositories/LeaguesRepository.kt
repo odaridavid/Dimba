@@ -1,4 +1,7 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.repositories
+
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.leagues.League
 
 /**
  *
@@ -13,10 +16,7 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-sealed class ResultState<out T>
+interface LeaguesRepository {
 
-class Success<out T>(val data: T) : ResultState<T>()
-
-class Error<T>(val e: Exception) : ResultState<T>()
-
-class Loading<T> : ResultState<T>()
+    suspend fun getAvailableLeagues(): ResultState<List<League>>
+}

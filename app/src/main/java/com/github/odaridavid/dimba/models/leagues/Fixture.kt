@@ -1,4 +1,6 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.leagues
+
+import com.squareup.moshi.Json
 
 /**
  *
@@ -13,24 +15,9 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class LiveFixture(
-    val fixtureId: Int,
-    val leagueId: Int,
-    val league: League,
-    val eventDate: String,
-    val eventTimestamp: Long,
-    val firstHalfStart: Long,
-    val secondHalfStart: Long,
-    val round: String,
-    val status: String,
-    val statusShort: String,
-    val elapsed: Int,
-    val venue: String,
-    val referee: String?,
-    val homeTeam: Team,
-    val awayTeam: Team,
-    val goalsHomeTeam: Byte,
-    val goalsAwayTeam: Byte,
-    val score: Scores,
-    val events: List<MatchEvents>
+data class Fixture(
+    val events: Boolean,
+    val lineups: Boolean,
+    val statistics: Boolean,
+    @field:Json(name = "player_statistics") val playersStatistics: Boolean
 )

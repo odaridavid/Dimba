@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.ui.fixtures
+package com.github.odaridavid.dimba.ui.standings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.odaridavid.dimba.commons.Loading
 import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
-import com.github.odaridavid.dimba.models.fixtures.LiveFixture
+import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -24,23 +24,17 @@ import kotlinx.coroutines.launch
  * the License.
  *
  **/
-class FixturesViewModel(private val getLiveFixturesUseCase: GetLiveFixturesUseCase) :
-    ViewModel() {
+class StandingsViewModel(val getStandingsUseCase: GetStandingsUseCase) : ViewModel() {
 
-    private val _fixtures = MutableLiveData<ResultState<List<LiveFixture>>>()
+    private val _leagueStanding = MutableLiveData<ResultState<List<List<TeamStanding>>>>()
 
-    val fixtures: LiveData<ResultState<List<LiveFixture>>>
-        get() = _fixtures
+    val leagueStanding: LiveData<ResultState<List<List<TeamStanding>>>>
+        get() = _leagueStanding
 
-    init {
-        getFixtures()
-    }
-
-    fun getFixtures() {
-        _fixtures.value = Loading<List<LiveFixture>>()
+    fun getLeagueStanding(leagueId: Int) {
+        _leagueStanding.value = Loading<List<List<TeamStanding>>>()
         viewModelScope.launch(Dispatchers.IO) {
-            _fixtures.postValue(getLiveFixturesUseCase.invoke())
+            _leagueStanding.value = getStandingsUseCase.invoke(leagueId)
         }
     }
-
 }

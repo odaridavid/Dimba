@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.models.fixtures
 
 /**
  *
@@ -13,9 +13,16 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class Scores(
-    val halfTime: String,
-    val fullTime: String?,
-    val extraTime: String?,
-    val penalty: String?
+data class MatchEvents(
+    val elapsed: Int,
+    val elapsedPlus: Int,
+    val teamId: Int,
+    val teamName: String,
+    val playerId: Int,
+    val player: String,
+    val assistId: Int,
+    val assist: String?,
+    val type: String,
+    val detail: String,
+    val comments: String?
 )

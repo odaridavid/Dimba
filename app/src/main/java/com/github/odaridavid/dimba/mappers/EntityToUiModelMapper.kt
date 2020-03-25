@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.mappers
 
 /**
  *
@@ -13,5 +13,3 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-
-object NoInternetConnectionException : Exception()

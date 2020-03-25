@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.models.standings
 
 /**
  *
@@ -13,10 +13,20 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-sealed class ResultState<out T>
+data class TeamStanding(
+    val rank: Int,
+    val teamId: Int,
+    val teamName: String,
+    val logo: String,
+    val group: String,
+    val form: String,
+    val status: String?,
+    val description: String,
+    val all: AllMatches,
+    val home: HomeMatches,
+    val away: AwayMatches,
+    val goalsDiff: Int,
+    val points: Int,
+    val lastUpdate: String
+)
 
-class Success<out T>(val data: T) : ResultState<T>()
-
-class Error<T>(val e: Exception) : ResultState<T>()
-
-class Loading<T> : ResultState<T>()

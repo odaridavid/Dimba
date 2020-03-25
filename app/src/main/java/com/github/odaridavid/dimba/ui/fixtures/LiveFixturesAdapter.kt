@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.github.odaridavid.dimba.R
-import com.github.odaridavid.dimba.models.LiveFixture
+import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 
 /**
  *

@@ -1,4 +1,7 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.repositories
+
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 
 /**
  *
@@ -13,8 +16,7 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class Team(
-    val id: Int,
-    val name: String,
-    val logo: String
-)
+interface StandingsRepository {
+
+    suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>>
+}

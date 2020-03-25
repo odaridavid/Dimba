@@ -1,6 +1,13 @@
 package com.github.odaridavid.dimba.mappers
 
-import com.github.odaridavid.dimba.models.*
+import com.github.odaridavid.dimba.models.fixtures.*
+import com.github.odaridavid.dimba.models.leagues.Coverage
+import com.github.odaridavid.dimba.models.leagues.Fixture
+import com.github.odaridavid.dimba.models.leagues.League
+import com.github.odaridavid.dimba.models.standings.AllMatches
+import com.github.odaridavid.dimba.models.standings.AwayMatches
+import com.github.odaridavid.dimba.models.standings.HomeMatches
+import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.model.*
 
 /**
@@ -40,13 +47,25 @@ fun LiveFixturesResponse.toEntity(): LiveFixture {
     )
 }
 
-fun LeagueResponse.toEntity(): League {
-    return League(name, country, logo, flag)
+fun LiveFixtureLeagueResponse.toEntity(): LeagueInfo {
+    return LeagueInfo(
+        name,
+        country,
+        logo,
+        flag
+    )
 }
 
-fun TeamResponse.toEntity(): Team = Team(id, name, logo)
+fun TeamResponse.toEntity(): Team =
+    Team(id, name, logo)
 
-fun ScoresResponse.toEntity(): Scores = Scores(halfTime, fullTime, extraTime, penalty)
+fun ScoresResponse.toEntity(): Scores =
+    Scores(
+        halfTime,
+        fullTime,
+        extraTime,
+        penalty
+    )
 
 fun EventsResponse.toEntity(): MatchEvents {
     return MatchEvents(
@@ -62,4 +81,63 @@ fun EventsResponse.toEntity(): MatchEvents {
         detail,
         comments
     )
+}
+
+//Standings
+fun TeamStandingResponse.toEntity(): TeamStanding {
+    return TeamStanding(
+        rank,
+        teamId,
+        teamName,
+        logo,
+        group,
+        form,
+        status,
+        description,
+        all.toEntity(),
+        home.toEntity(),
+        away.toEntity(),
+        goalsDiff,
+        points,
+        lastUpdate
+    )
+}
+
+fun HomeMatchesResponse.toEntity(): HomeMatches {
+    return HomeMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
+}
+
+fun AwayMatchesResponse.toEntity(): AwayMatches {
+    return AwayMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
+}
+
+fun AllMatchesResponse.toEntity(): AllMatches {
+    return AllMatches(matchesPlayed, win, draw, lose, goalsFor, goalsAgainst)
+}
+
+//League
+fun LeagueResponse.toEntity(): League {
+    return League(
+        leagueId,
+        name,
+        type,
+        country,
+        countryCode ?: "",
+        season,
+        seasonStart,
+        seasonEnd,
+        logo,
+        flag,
+        standings,
+        isCurrent,
+        coverage.toEntity()
+    )
+}
+
+fun CoverageResponse.toEntity(): Coverage {
+    return Coverage(standings, fixtures.toEntity(), players, topScorers, predictions, odds)
+}
+
+fun FixturesResponse.toEntity(): Fixture {
+    return Fixture(events, lineups, statistics, playersStatistics)
 }

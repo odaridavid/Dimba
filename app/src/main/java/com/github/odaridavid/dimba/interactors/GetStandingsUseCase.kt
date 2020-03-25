@@ -1,4 +1,8 @@
-package com.github.odaridavid.dimba.models
+package com.github.odaridavid.dimba.interactors
+
+import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.models.standings.TeamStanding
+import com.github.odaridavid.dimba.repositories.StandingsRepository
 
 /**
  *
@@ -13,9 +17,9 @@ package com.github.odaridavid.dimba.models
  * the License.
  *
  **/
-data class League(
-    val name: String,
-    val country: String,
-    val logo: String?,
-    val flag: String?
-)
+class GetStandingsUseCase(val standingsRepository: StandingsRepository) {
+
+    suspend operator fun invoke(leagueId: Int): ResultState<List<List<TeamStanding>>> {
+        return standingsRepository.getLeagueStandings(leagueId)
+    }
+}

@@ -48,12 +48,10 @@ and default parameters
 - [Timber](https://github.com/JakeWharton/timber) - Logger
 - [threetenbp](https://github.com/JakeWharton/threetenbp)
 
-
-
 ## Screenshots
 
-|<img src="art/no_fix.png" width=200/>|<img src="art/live_fix.png" width=200/>|
-|:--:|:--:|
+|<img src="art/leagues.png" width=200/>|<img src="art/no_leagues.png" width=200/>|<img src="art/no_fix.png" width=200/>|<img src="art/live_fix.png" width=200/>|
+|:--:|:--:|:--:|:--:|
 
 ## Contributions
 
