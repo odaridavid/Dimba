@@ -1,8 +1,7 @@
 package com.github.odaridavid.dimba.models.leagues
 
+import com.squareup.moshi.Json
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 /**
  *
  * Copyright 2020 David Odari
@@ -16,20 +15,9 @@ import androidx.room.PrimaryKey
  * the License.
  *
  **/
-@Entity(tableName = "leagues")
-data class League(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
-    val leagueId: Int,
-    val name: String,
-    val type: String,
-    val country: String,
-    val countryCode: String,
-    val season: Int,
-    val seasonStart: String,
-    val seasonEnd: String,
-    val logo: String?,
-    val flag: String?,
-    val standings: Int,
-    val isCurrent: Int
+data class Fixture(
+    val events: Boolean,
+    val lineups: Boolean,
+    val statistics: Boolean,
+    @field:Json(name = "player_statistics") val playersStatistics: Boolean
 )

@@ -12,7 +12,6 @@ import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -79,9 +78,7 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     }
 
     private fun setupLiveFixtureAdapter(liveFixtures: List<LiveFixture>): LiveFixturesAdapter {
-        return LiveFixturesAdapter().apply {
-            submitList(liveFixtures)
-        }
+        return LiveFixturesAdapter().apply { submitList(liveFixtures) }
     }
 
 }

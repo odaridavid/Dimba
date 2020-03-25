@@ -49,6 +49,7 @@ dependencies {
     def coil_version = "0.9.5"
     def room_version = "2.2.5"
 
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Kotlin

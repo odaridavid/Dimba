@@ -90,8 +90,6 @@ class LeaguesFragment : BaseFragment<List<League>>() {
     }
 
     private fun setupLeaguesAdapter(availableLeagues: List<League>): LeagueAdapter {
-        return LeagueAdapter().apply {
-            submitList(availableLeagues)
-        }
+        return LeagueAdapter().apply { submitList(availableLeagues) }
     }
 }

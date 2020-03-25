@@ -7,8 +7,6 @@ import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.leagues.League
 import com.github.odaridavid.dimba.network.FootballApiService
-import timber.log.Timber
-
 /**
  *
  * Copyright 2020 David Odari
@@ -40,4 +38,5 @@ class LeaguesRepositoryImpl(val api: FootballApiService, val leaguesDao: Leagues
             } else Success(leaguesDao.loadAllLeagues())
         }
     }
+      
 }
