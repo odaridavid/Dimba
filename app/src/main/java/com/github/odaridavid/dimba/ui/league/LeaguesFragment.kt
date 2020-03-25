@@ -12,6 +12,7 @@ import com.github.odaridavid.dimba.commons.Error
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.isVisible
 import com.github.odaridavid.dimba.models.leagues.League
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_leagues.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -84,8 +85,11 @@ class LeaguesFragment : BaseFragment<List<League>>() {
 
     private fun setupRecyclerView(availableLeagues: List<League>) {
         leagues_recycler_view.layoutManager = LinearLayoutManager(context)
-        leagues_recycler_view.adapter = LeagueAdapter().apply {
-            submitList(availableLeagues)
-        }
+        val adapter = setupLeaguesAdapter(availableLeagues)
+        leagues_recycler_view.adapter = ScaleInAnimationAdapter(adapter)
+    }
+
+    private fun setupLeaguesAdapter(availableLeagues: List<League>): LeagueAdapter {
+        return LeagueAdapter().apply { submitList(availableLeagues) }
     }
 }

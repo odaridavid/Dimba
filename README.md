@@ -47,6 +47,7 @@ and default parameters
 - [Coil](https://github.com/coil-kt/coil) - Image loading
 - [Timber](https://github.com/JakeWharton/timber) - Logger
 - [threetenbp](https://github.com/JakeWharton/threetenbp)
+- [Recyclerview Animators](https://github.com/wasabeef/recyclerview-animators) - Simplifies recyclerview animations
 
 ## Screenshots
 

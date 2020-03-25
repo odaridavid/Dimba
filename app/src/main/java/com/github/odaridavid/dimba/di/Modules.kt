@@ -1,5 +1,9 @@
 package com.github.odaridavid.dimba.di
 
+import androidx.room.Room
+import com.github.odaridavid.dimba.commons.Constants
+import com.github.odaridavid.dimba.db.DimbaDatabase
+import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
@@ -38,9 +42,19 @@ val network = module {
 }
 
 val data = module {
+    fun provideLeagueDao(db: DimbaDatabase): LeaguesDao = db.leagueDao()
+    single {
+        Room.databaseBuilder(
+                androidContext(),
+                DimbaDatabase::class.java,
+                Constants.APP_DATABASE_NAME
+            )
+            .build()
+    }
+    single { provideLeagueDao(db = get()) }
     factory<FixturesRepository> { FixturesRepositoryImpl(api = get()) }
     factory<StandingsRepository> { StandingsRepositoryImpl(api = get()) }
-    factory<LeaguesRepository> { LeaguesRepositoryImpl(api=get()) }
+    factory<LeaguesRepository> { LeaguesRepositoryImpl(api = get(), leaguesDao = get()) }
 }
 
 val viewModel = module {

@@ -1,8 +1,6 @@
 package com.github.odaridavid.dimba.mappers
 
 import com.github.odaridavid.dimba.models.fixtures.*
-import com.github.odaridavid.dimba.models.leagues.Coverage
-import com.github.odaridavid.dimba.models.leagues.Fixture
 import com.github.odaridavid.dimba.models.leagues.League
 import com.github.odaridavid.dimba.models.standings.AllMatches
 import com.github.odaridavid.dimba.models.standings.AwayMatches
@@ -118,26 +116,20 @@ fun AllMatchesResponse.toEntity(): AllMatches {
 //League
 fun LeagueResponse.toEntity(): League {
     return League(
-        leagueId,
-        name,
-        type,
-        country,
-        countryCode ?: "",
-        season,
-        seasonStart,
-        seasonEnd,
-        logo,
-        flag,
-        standings,
-        isCurrent,
-        coverage.toEntity()
+        leagueId = leagueId,
+        name = name,
+        type = type,
+        country = country,
+        countryCode = countryCode ?: "",
+        season = season,
+        seasonStart = seasonStart,
+        seasonEnd = seasonEnd,
+        logo = logo,
+        flag = flag,
+        standings = standings,
+        isCurrent = isCurrent
     )
 }
 
-fun CoverageResponse.toEntity(): Coverage {
-    return Coverage(standings, fixtures.toEntity(), players, topScorers, predictions, odds)
-}
 
-fun FixturesResponse.toEntity(): Fixture {
-    return Fixture(events, lineups, statistics, playersStatistics)
-}
+

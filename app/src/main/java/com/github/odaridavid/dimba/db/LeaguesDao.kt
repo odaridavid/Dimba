@@ -1,4 +1,11 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.db
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.github.odaridavid.dimba.models.leagues.League
 
 /**
  *
@@ -13,7 +20,16 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-object Constants {
-    const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
-    const val APP_DATABASE_NAME="dimba_db"
+@Dao
+interface LeaguesDao {
+
+    @Query("SELECT * FROM leagues")
+    fun loadAllLeagues(): List<League>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLeagues(league: List<League>)
+
+    @Query("DELETE FROM leagues")
+    fun deleteAllLeagues()
+
 }
