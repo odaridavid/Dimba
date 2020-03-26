@@ -25,7 +25,8 @@ import com.github.odaridavid.dimba.models.leagues.League
  * the License.
  *
  **/
-class LeagueAdapter : ListAdapter<League, LeagueAdapter.LeagueViewHolder>(LeagueDiffUtil) {
+class LeagueAdapter(val onItemClick: (Int) -> Unit) :
+    ListAdapter<League, LeagueAdapter.LeagueViewHolder>(LeagueDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueViewHolder {
         val context = parent.context
@@ -40,6 +41,9 @@ class LeagueAdapter : ListAdapter<League, LeagueAdapter.LeagueViewHolder>(League
 
         fun bind(league: League) {
             with(view) {
+                view.setOnClickListener {
+                    onItemClick(league.leagueId)
+                }
                 val ivLeagueIcon = findViewById<ImageView>(R.id.league_icon_image_view)
                 ivLeagueIcon.contentDescription = "${league.name} icon"
                 ivLeagueIcon.load(league.logo) {

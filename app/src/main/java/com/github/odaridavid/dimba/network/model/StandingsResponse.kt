@@ -21,13 +21,13 @@ data class StandingsApiResult(val results: Int, val standings: List<List<TeamSta
 
 data class TeamStandingResponse(
     val rank: Int,
-    @field:Json(name = "team_id") val teamId: Int,
+    @field:Json(name = "team_id") val teamId: Int?,
     val teamName: String,
     val logo: String,
-    val group: String,
-    @field:Json(name = "forme") val form: String,
+    val group: String?,
+    @field:Json(name = "forme") val form: String?,
     val status: String?,
-    val description: String,
+    val description: String?,
     val all: AllMatchesResponse,
     val home: HomeMatchesResponse,
     val away: AwayMatchesResponse,

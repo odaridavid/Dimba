@@ -85,13 +85,13 @@ fun EventsResponse.toEntity(): MatchEvents {
 fun TeamStandingResponse.toEntity(): TeamStanding {
     return TeamStanding(
         rank,
-        teamId,
+        teamId ?: 0,
         teamName,
         logo,
-        group,
-        form,
+        group ?: "N/A",
+        form ?: "N/A",
         status,
-        description,
+        description ?: "N/A",
         all.toEntity(),
         home.toEntity(),
         away.toEntity(),

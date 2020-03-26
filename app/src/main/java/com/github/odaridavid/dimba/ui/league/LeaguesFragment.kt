@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LeaguesFragment : BaseFragment<List<League>>() {
 
-    //TODO Navigate from league to team standings in league
     private val leaguesViewModel: LeaguesViewModel by viewModel()
 
     private lateinit var rootView: View
@@ -83,6 +82,9 @@ class LeaguesFragment : BaseFragment<List<League>>() {
     }
 
     private fun setupLeaguesAdapter(availableLeagues: List<League>): LeagueAdapter {
-        return LeagueAdapter().apply { submitList(availableLeagues) }
+        return LeagueAdapter { leagueId ->
+            val destination = LeaguesFragmentDirections.toTeamStandingsFragment(leagueId)
+            rootView.findNavController().navigate(destination)
+        }.apply { submitList(availableLeagues) }
     }
 }

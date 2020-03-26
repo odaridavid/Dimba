@@ -16,13 +16,22 @@
         android:label="fragment_leagues"
         tools:layout="@layout/fragment_leagues" >
         <action
-            android:id="@+id/action_leaguesFragment_to_standingsFragment"
-            app:destination="@id/standingsFragment" />
+            android:id="@+id/to_teamStandingsFragment"
+            app:destination="@id/standingsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/standingsFragment"
         android:name="com.github.odaridavid.dimba.ui.standings.StandingsFragment"
         android:label="fragment_standings"
-        tools:layout="@layout/fragment_standings" />
+        tools:layout="@layout/fragment_standings" >
+        <argument
+            android:name="leagueId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
 </navigation>

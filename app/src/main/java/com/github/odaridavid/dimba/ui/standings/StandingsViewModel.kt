@@ -34,7 +34,7 @@ class StandingsViewModel(val getStandingsUseCase: GetStandingsUseCase) : ViewMod
     fun getLeagueStanding(leagueId: Int) {
         _leagueStanding.value = Loading<List<List<TeamStanding>>>()
         viewModelScope.launch(Dispatchers.IO) {
-            _leagueStanding.value = getStandingsUseCase.invoke(leagueId)
+            _leagueStanding.postValue(getStandingsUseCase.invoke(leagueId))
         }
     }
 }

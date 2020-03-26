@@ -54,6 +54,9 @@ and default parameters
 |<img src="art/leagues.png" width=200/>|<img src="art/no_leagues.png" width=200/>|<img src="art/no_fix.png" width=200/>|<img src="art/live_fix.png" width=200/>|
 |:--:|:--:|:--:|:--:|
 
+|<img src="art/epl.png" width=200/>|<img src="art/no_stan.png" width=200/>|
+|:--:|:--:|
+
 ## Contributions
 
 All Contributions are welcome.Currently there is no style guide on how
