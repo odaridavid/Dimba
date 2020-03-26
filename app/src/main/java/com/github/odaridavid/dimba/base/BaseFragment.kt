@@ -1,5 +1,6 @@
 package com.github.odaridavid.dimba.base
 
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.odaridavid.dimba.commons.*
@@ -19,12 +20,14 @@ import kotlinx.android.synthetic.main.progressbar.*
  * the License.
  *
  **/
-abstract class BaseFragment<T> : Fragment() {
+abstract class BaseFragment<T>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
+
 
     fun onNetworkChange(block: (Boolean) -> Unit) {
-        NetworkUtils.getNetworkStatus(context!!).observe(this, Observer { isConnected ->
-            block(isConnected)
-        })
+        NetworkUtils.getNetworkStatus(context!!)
+            .observe(this.viewLifecycleOwner, Observer { isConnected ->
+                block(isConnected)
+            })
     }
 
     fun handleState(result: ResultState<T>) {

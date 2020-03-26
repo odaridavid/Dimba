@@ -1,9 +1,7 @@
 package com.github.odaridavid.dimba.ui.standings
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,20 +15,10 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_standings.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class StandingsFragment : BaseFragment<List<List<TeamStanding>>>() {
+class StandingsFragment : BaseFragment<List<List<TeamStanding>>>(R.layout.fragment_standings) {
 
-    //TODO Show Group level if available
-    //TODO Separate List of list of team standing
-    //TODO Improve Ui nicely spaced out and using card
     private val standingsViewModel: StandingsViewModel by viewModel()
     private val args: StandingsFragmentArgs by navArgs()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_standings, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

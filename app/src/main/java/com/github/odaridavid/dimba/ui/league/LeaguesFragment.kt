@@ -2,6 +2,7 @@ package com.github.odaridavid.dimba.ui.league
 
 import android.os.Bundle
 import android.view.*
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
@@ -16,19 +17,16 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_leagues.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LeaguesFragment : BaseFragment<List<League>>() {
+class LeaguesFragment : BaseFragment<List<League>>(R.layout.fragment_leagues) {
 
     private val leaguesViewModel: LeaguesViewModel by viewModel()
-
-    private lateinit var rootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        rootView = inflater.inflate(R.layout.fragment_leagues, container, false)
-        return rootView
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -37,12 +35,16 @@ class LeaguesFragment : BaseFragment<List<League>>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = rootView.findNavController()
+        val navController = view!!.findNavController()
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeNetworkChanges()
+    }
+
+    private fun observeNetworkChanges() {
         onNetworkChange { isConnected ->
             if (isConnected && leaguesViewModel.leagues.value is Error)
                 leaguesViewModel.getAllAvailableLeagues()
@@ -84,7 +86,7 @@ class LeaguesFragment : BaseFragment<List<League>>() {
     private fun setupLeaguesAdapter(availableLeagues: List<League>): LeagueAdapter {
         return LeagueAdapter { leagueId ->
             val destination = LeaguesFragmentDirections.toTeamStandingsFragment(leagueId)
-            rootView.findNavController().navigate(destination)
+            view!!.findNavController().navigate(destination)
         }.apply { submitList(availableLeagues) }
     }
 }

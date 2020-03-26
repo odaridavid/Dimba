@@ -63,7 +63,7 @@ class LiveFixturesAdapter :
                 )
 
                 val tvElapsedTime = findViewById<TextView>(R.id.elapsed_time_text_view)
-                tvElapsedTime.text = "${fixture.elapsed}`"
+                tvElapsedTime.text = fixture.elapsed.toString()
             }
         }
     }
