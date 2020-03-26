@@ -23,7 +23,7 @@ import com.github.odaridavid.dimba.network.FootballApiService
 class LeaguesRepositoryImpl(val api: FootballApiService, val leaguesDao: LeaguesDao) :
     LeaguesRepository {
 
-    //TODO Update Leagues either periodically or force refresh on request or if data is stale based on date
+    //TODO Update Leagues either periodically or force refresh on request or if data is stale based on last update date
     override suspend fun getAvailableLeagues(): ResultState<List<League>> {
         return executeNonBlocking {
             if (leaguesDao.loadAllLeagues().isEmpty()) {

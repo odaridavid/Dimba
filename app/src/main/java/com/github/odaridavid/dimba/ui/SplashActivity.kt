@@ -19,6 +19,7 @@ import com.github.odaridavid.dimba.R
  **/
 class SplashActivity : AppCompatActivity() {
 
+    //TODO Add a splash screen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

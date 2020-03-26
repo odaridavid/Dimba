@@ -38,7 +38,7 @@ class TeamStandingAdapter :
         getItem(position).let { holder.bind(it) }
 
     inner class TeamStandingViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        //TODO Change background color for nth even rows
+        //TODO Create a better table like view
         fun bind(teamStanding: TeamStanding) {
             with(view) {
                 val tvRank = findViewById<TextView>(R.id.rank_text_view)
