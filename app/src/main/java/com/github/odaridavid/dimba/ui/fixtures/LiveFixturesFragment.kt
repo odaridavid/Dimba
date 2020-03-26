@@ -1,9 +1,7 @@
 package com.github.odaridavid.dimba.ui.fixtures
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
@@ -17,36 +15,26 @@ import kotlinx.android.synthetic.main.fragment_live_fixtures.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
+class LiveFixturesFragment : BaseFragment<List<LiveFixture>>(R.layout.fragment_live_fixtures) {
 
     //TODO Display Live Fixture Events
     private val fixturesViewModel: FixturesViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_live_fixtures, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeNetworkChanges()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private fun observeNetworkChanges() {
         onNetworkChange { isConnected ->
-            if (isConnected && fixturesViewModel.fixtures.value is Error) {
+            if (isConnected && fixturesViewModel.fixtures.value is Error)
                 fixturesViewModel.getFixtures()
-            }
         }
     }
 
     override fun onResume() {
         super.onResume()
         observeLiveFixtures()
-    }
-
-    override fun showOnError(message: String) {
-        super.showOnError(message)
-        error_text_view.text = message
-        error_text_view.isVisible(true)
     }
 
     private fun observeLiveFixtures() {
@@ -56,9 +44,8 @@ class LiveFixturesFragment : BaseFragment<List<LiveFixture>>() {
     }
 
     override fun showLoading(isLoading: Boolean) {
-        live_fixtures_progress_bar.isVisible(isLoading)
+        super.showLoading(isLoading)
         no_live_fixtures_text_view.isVisible(false)
-        error_text_view.isVisible(false)
     }
 
     override fun showOnSuccess(result: Success<List<LiveFixture>>) {

@@ -3,6 +3,7 @@ package com.github.odaridavid.dimba.repositories
 import com.github.odaridavid.dimba.commons.ResultState
 import com.github.odaridavid.dimba.commons.Success
 import com.github.odaridavid.dimba.commons.executeNonBlocking
+import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.network.FootballApiService
 
@@ -21,10 +22,16 @@ import com.github.odaridavid.dimba.network.FootballApiService
  **/
 class StandingsRepositoryImpl(val api: FootballApiService) : StandingsRepository {
 
-    //TODO Load Standings for selected League
     override suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
         return executeNonBlocking {
-            Success(emptyList<List<TeamStanding>>())
+            val response = api.getLeagueStandings(leagueId)
+            if (response.api.results == 0)
+                Success(emptyList<List<TeamStanding>>())
+            else {
+                val standings =
+                    response.api.standings.map { it.map { standings -> standings.toEntity() } }
+                Success(standings)
+            }
         }
     }
 }

@@ -3,9 +3,12 @@ package com.github.odaridavid.dimba.ui.standings;
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 
@@ -35,9 +38,23 @@ class TeamStandingAdapter :
         getItem(position).let { holder.bind(it) }
 
     inner class TeamStandingViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-
+        //TODO Create a better table like view
         fun bind(teamStanding: TeamStanding) {
-               //TODO Create Teamstanding layout
+            with(view) {
+                val tvRank = findViewById<TextView>(R.id.rank_text_view)
+                val ivTeamLogo = findViewById<ImageView>(R.id.team_logo_image_view)
+                val tvTeamName = findViewById<TextView>(R.id.team_name_text_view)
+                val tvForm = findViewById<TextView>(R.id.form_text_view)
+                val tvPoints = findViewById<TextView>(R.id.points_text_view)
+
+                tvRank.text = teamStanding.rank.toString()
+                ivTeamLogo.load(teamStanding.logo) {
+                    placeholder(R.drawable.ic_league)
+                }
+                tvTeamName.text = teamStanding.teamName
+                tvForm.text = teamStanding.form
+                tvPoints.text = teamStanding.points.toString()
+            }
         }
     }
 

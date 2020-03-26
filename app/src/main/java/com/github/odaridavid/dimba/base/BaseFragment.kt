@@ -1,8 +1,11 @@
 package com.github.odaridavid.dimba.base
 
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.odaridavid.dimba.commons.*
+import kotlinx.android.synthetic.main.errorview.*
+import kotlinx.android.synthetic.main.progressbar.*
 
 /**
  *
@@ -17,12 +20,14 @@ import com.github.odaridavid.dimba.commons.*
  * the License.
  *
  **/
-abstract class BaseFragment<T> : Fragment() {
+abstract class BaseFragment<T>(@LayoutRes val layoutId: Int) : Fragment(layoutId) {
+
 
     fun onNetworkChange(block: (Boolean) -> Unit) {
-        NetworkUtils.getNetworkStatus(context!!).observe(this, Observer { isConnected ->
-            block(isConnected)
-        })
+        NetworkUtils.getNetworkStatus(context!!)
+            .observe(this.viewLifecycleOwner, Observer { isConnected ->
+                block(isConnected)
+            })
     }
 
     fun handleState(result: ResultState<T>) {
@@ -33,13 +38,18 @@ abstract class BaseFragment<T> : Fragment() {
         }
     }
 
-    abstract fun showLoading(isLoading: Boolean)
+    open fun showLoading(isLoading: Boolean) {
+        dimba_progress_bar.isVisible(isLoading)
+        error_text_view.isVisible(false)
+    }
 
     open fun showOnSuccess(result: Success<T>) {
         showLoading(false)
     }
 
-    open fun showOnError(message: String) {
+    fun showOnError(message: String) {
         showLoading(false)
+        error_text_view.text = message
+        error_text_view.isVisible(true)
     }
 }

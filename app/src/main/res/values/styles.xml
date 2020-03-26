@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="InfoTextView">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="android:drawablePadding">@dimen/default_padding</item>
+        <item name="android:padding">@dimen/default_padding</item>
+    </style>
+</resources>
