@@ -11,16 +11,14 @@
  the License.
 
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/liveFixturesFragment"
-        android:icon="@drawable/ic_live"
-        android:title="@string/live_fixtures"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom" />
-</menu>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--TODO Icon based on current theme-->
+    <ListPreference
+        app:entryValues="@array/theme_values"
+        app:key="@string/key_theme_preference"
+        app:title="@string/title_theme_preference"
+        app:defaultValue="Light"
+        app:useSimpleSummaryProvider="true" />
+
+</androidx.preference.PreferenceScreen>

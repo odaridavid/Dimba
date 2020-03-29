@@ -1,14 +1,12 @@
 package com.github.odaridavid.dimba
 
 import android.app.Application
+import androidx.preference.PreferenceManager
 import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.util.CoilUtils
-import com.github.odaridavid.dimba.di.data
-import com.github.odaridavid.dimba.di.domain
-import com.github.odaridavid.dimba.di.network
-import com.github.odaridavid.dimba.di.viewModel
+import com.github.odaridavid.dimba.di.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -37,12 +35,28 @@ class DimbaApplication : Application() {
         if (BuildConfig.DEBUG)
             Timber.plant(Timber.DebugTree())
 
+        initKoin()
+
+        initCoil()
+
+        initPreferences()
+
+        AndroidThreeTen.init(this)
+    }
+
+    private fun initPreferences() {
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
+    }
+
+    private fun initKoin() {
         startKoin {
             androidLogger()
             androidContext(this@DimbaApplication)
-            modules(listOf(network, data, viewModel, domain))
+            modules(listOf(network, data, viewModel, domain, framework))
         }
+    }
 
+    private fun initCoil() {
         Coil.setDefaultImageLoader {
             ImageLoader(applicationContext) {
                 crossfade(true)
@@ -56,7 +70,5 @@ class DimbaApplication : Application() {
                 }
             }
         }
-
-        AndroidThreeTen.init(this)
     }
 }

@@ -1,5 +1,6 @@
 package com.github.odaridavid.dimba.di
 
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.github.odaridavid.dimba.commons.Constants
 import com.github.odaridavid.dimba.db.DimbaDatabase
@@ -62,8 +63,13 @@ val viewModel = module {
     viewModel { StandingsViewModel(getStandingsUseCase = get()) }
     viewModel { LeaguesViewModel(getAvailableLeaguesUseCase = get()) }
 }
+
 val domain = module {
     factory { GetLiveFixturesUseCase(fixturesRepository = get()) }
     factory { GetStandingsUseCase(standingsRepository = get()) }
     factory { GetAvailableLeaguesUseCase(leaguesRepository = get()) }
+}
+
+val framework = module {
+    single { PreferenceManager.getDefaultSharedPreferences(androidContext()) }
 }

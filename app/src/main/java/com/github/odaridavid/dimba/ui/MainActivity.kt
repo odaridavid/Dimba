@@ -25,7 +25,6 @@ import com.github.odaridavid.dimba.commons.NetworkUtils
  **/
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    //TODO Implement a dark theme
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
