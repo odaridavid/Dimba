@@ -3,12 +3,15 @@ package com.github.odaridavid.dimba.ui.settings
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.github.odaridavid.dimba.R
+import com.github.odaridavid.dimba.commons.Constants.THEME_DARK
+import com.github.odaridavid.dimba.commons.Constants.THEME_LIGHT
+import com.github.odaridavid.dimba.commons.Constants.THEME_SYSTEM
+import com.github.odaridavid.dimba.commons.ThemeUtils
 import org.koin.android.ext.android.inject
 
 /**
@@ -61,12 +64,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun setupIcons(themePreference: ListPreference?) {
         val themeValue =
             sharedPref.getString(getString(R.string.key_theme_preference), DEFAULT_THEME_VALUE)
-        themePreference?.icon = when (themeValue) {
-            THEME_LIGHT -> getDrawable(context!!, R.drawable.ic_day)
-            THEME_DARK -> getDrawable(context!!, R.drawable.ic_night)
-            THEME_SYSTEM -> getDrawable(context!!, R.drawable.ic_day)
-            else -> getDrawable(context!!, R.drawable.ic_day)
-        }
+        themePreference?.icon = getDrawable(
+            context!!,
+            when (themeValue) {
+                THEME_LIGHT -> R.drawable.ic_day
+                THEME_DARK -> R.drawable.ic_night
+                THEME_SYSTEM -> R.drawable.ic_day
+                else -> R.drawable.ic_day
+            }
+        )
     }
 
     override fun onResume() {
@@ -79,26 +85,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val themePrefKey = getString(R.string.key_theme_preference)
         sharedPref.registerOnSharedPreferenceChangeListener { prefs: SharedPreferences?, key: String? ->
             if (key == themePrefKey) {
-                when (prefs?.getString(themePrefKey, DEFAULT_THEME_VALUE)) {
-                    THEME_LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    THEME_DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    THEME_SYSTEM ->
-                        if (Build.VERSION.SDK_INT >= 29)
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                        else
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
-                }
+                ThemeUtils.updateTheme(prefs!!, key)
             }
         }
     }
 
     companion object {
         const val DEFAULT_THEME_VALUE = "Light"
-
-        //THEME VALUES
-        const val THEME_LIGHT = "Light"
-        const val THEME_DARK = "Dark"
-        const val THEME_SYSTEM = "System"
     }
 
 }

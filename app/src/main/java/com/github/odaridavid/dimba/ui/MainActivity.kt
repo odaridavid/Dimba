@@ -1,5 +1,6 @@
 package com.github.odaridavid.dimba.ui
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -8,7 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.github.odaridavid.dimba.R
-import com.github.odaridavid.dimba.commons.NetworkUtils
+import com.github.odaridavid.dimba.commons.ThemeUtils
+import org.koin.android.ext.android.inject
 
 /**
  *
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
