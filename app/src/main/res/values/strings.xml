@@ -17,5 +17,8 @@
     <string name="settings">Settings</string>
     <string name="title_theme_preference">App Theme</string>
     <string name="key_theme_preference" translatable="false">theme</string>
-
+    <string name="pref_summary_theme_system_above_q">System Default</string>
+    <string name="pref_summary_theme_system_below_q">Set By Battery Saver</string>
+    <string name="pref_summary_theme_light">Light Theme</string>
+    <string name="pref_summary_theme_dark">Dark Theme</string>
 </resources>

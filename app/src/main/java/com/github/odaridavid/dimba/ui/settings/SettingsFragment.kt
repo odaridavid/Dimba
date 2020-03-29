@@ -30,7 +30,7 @@ import org.koin.android.ext.android.inject
 class SettingsFragment : PreferenceFragmentCompat() {
 
     private val sharedPref: SharedPreferences by inject()
-    var themePreference: ListPreference? = null
+    private var themePreference: ListPreference? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -50,18 +50,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
         //Setup Theme Summary Info
         themePreference?.summaryProvider =
             Preference.SummaryProvider<ListPreference> { preference ->
-                when (preference.value) {
-                    THEME_LIGHT -> themeArrayOptionsAboveQ[0]
-                    THEME_DARK -> themeArrayOptionsAboveQ[1]
-                    THEME_SYSTEM -> {
-                        if (Build.VERSION.SDK_INT >= 29) themeArrayOptionsAboveQ[2] else themeArrayOptionsBelowQ[2]
+                getString(
+                    when (preference.value) {
+                        THEME_LIGHT -> R.string.pref_summary_theme_light
+                        THEME_DARK -> R.string.pref_summary_theme_dark
+                        THEME_SYSTEM -> {
+                            if (Build.VERSION.SDK_INT >= 29) R.string.pref_summary_theme_system_above_q else R.string.pref_summary_theme_system_below_q
+                        }
+                        else -> R.string.pref_summary_theme_light
                     }
-                    else -> "Default"
-                }
+                )
             }
     }
 
-    private fun setupIcons(themePreference: ListPreference?) {
+    private fun setupThemePreferenceIcons(themePreference: ListPreference?) {
         val themeValue =
             sharedPref.getString(getString(R.string.key_theme_preference), DEFAULT_THEME_VALUE)
         themePreference?.icon = getDrawable(
@@ -77,14 +79,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onResume() {
         super.onResume()
-        setupIcons(themePreference)
+        setupThemePreferenceIcons(themePreference)
         registerThemeChangeListener()
     }
 
     private fun registerThemeChangeListener() {
-        val themePrefKey = getString(R.string.key_theme_preference)
+        val themeKey = getString(R.string.key_theme_preference)
         sharedPref.registerOnSharedPreferenceChangeListener { prefs: SharedPreferences?, key: String? ->
-            if (key == themePrefKey) {
+            if (key == themeKey) {
                 ThemeUtils.updateTheme(prefs!!, key)
             }
         }
