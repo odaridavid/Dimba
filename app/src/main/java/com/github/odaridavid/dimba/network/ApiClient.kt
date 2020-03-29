@@ -2,9 +2,8 @@ package com.github.odaridavid.dimba.network
 
 import android.content.Context
 import com.github.odaridavid.dimba.BuildConfig
-import com.github.odaridavid.dimba.commons.Constants
+import com.github.odaridavid.dimba.utils.Constants
 import okhttp3.Cache
-import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

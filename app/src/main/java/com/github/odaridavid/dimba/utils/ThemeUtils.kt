@@ -1,11 +1,11 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.utils
 
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import com.github.odaridavid.dimba.commons.Constants.THEME_DARK
-import com.github.odaridavid.dimba.commons.Constants.THEME_LIGHT
-import com.github.odaridavid.dimba.commons.Constants.THEME_SYSTEM
+import com.github.odaridavid.dimba.utils.Constants.THEME_DARK
+import com.github.odaridavid.dimba.utils.Constants.THEME_LIGHT
+import com.github.odaridavid.dimba.utils.Constants.THEME_SYSTEM
 
 /**
  *

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.odaridavid.dimba.commons.Loading
-import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.utils.Loading
+import com.github.odaridavid.dimba.utils.ResultState
 import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import kotlinx.coroutines.Dispatchers

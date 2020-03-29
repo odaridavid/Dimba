@@ -2,7 +2,7 @@ package com.github.odaridavid.dimba.di
 
 import androidx.preference.PreferenceManager
 import androidx.room.Room
-import com.github.odaridavid.dimba.commons.Constants
+import com.github.odaridavid.dimba.utils.Constants
 import com.github.odaridavid.dimba.db.DimbaDatabase
 import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase

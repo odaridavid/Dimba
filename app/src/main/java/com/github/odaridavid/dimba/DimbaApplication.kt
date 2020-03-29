@@ -7,7 +7,7 @@ import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.util.CoilUtils
-import com.github.odaridavid.dimba.commons.ThemeUtils
+import com.github.odaridavid.dimba.utils.ThemeUtils
 import com.github.odaridavid.dimba.di.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import okhttp3.OkHttpClient

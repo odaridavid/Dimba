@@ -3,7 +3,7 @@ package com.github.odaridavid.dimba.base
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.github.odaridavid.dimba.commons.*
+import com.github.odaridavid.dimba.utils.*
 import kotlinx.android.synthetic.main.errorview.*
 import kotlinx.android.synthetic.main.progressbar.*
 

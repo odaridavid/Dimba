@@ -1,8 +1,8 @@
 package com.github.odaridavid.dimba.repositories
 
-import com.github.odaridavid.dimba.commons.ResultState
-import com.github.odaridavid.dimba.commons.Success
-import com.github.odaridavid.dimba.commons.executeNonBlocking
+import com.github.odaridavid.dimba.utils.ResultState
+import com.github.odaridavid.dimba.utils.Success
+import com.github.odaridavid.dimba.utils.executeNonBlocking
 import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.leagues.League

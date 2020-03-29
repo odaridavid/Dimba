@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.mappers
+package com.github.odaridavid.dimba.utils
 
 /**
  *
@@ -13,3 +13,12 @@ package com.github.odaridavid.dimba.mappers
  * the License.
  *
  **/
+object Constants {
+    const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
+    const val APP_DATABASE_NAME = "dimba_db"
+
+    //THEME VALUES
+    const val THEME_LIGHT = "Light"
+    const val THEME_DARK = "Dark"
+    const val THEME_SYSTEM = "System"
+}

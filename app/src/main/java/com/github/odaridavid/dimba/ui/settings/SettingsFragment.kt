@@ -8,10 +8,10 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.github.odaridavid.dimba.R
-import com.github.odaridavid.dimba.commons.Constants.THEME_DARK
-import com.github.odaridavid.dimba.commons.Constants.THEME_LIGHT
-import com.github.odaridavid.dimba.commons.Constants.THEME_SYSTEM
-import com.github.odaridavid.dimba.commons.ThemeUtils
+import com.github.odaridavid.dimba.utils.Constants.THEME_DARK
+import com.github.odaridavid.dimba.utils.Constants.THEME_LIGHT
+import com.github.odaridavid.dimba.utils.Constants.THEME_SYSTEM
+import com.github.odaridavid.dimba.utils.ThemeUtils
 import org.koin.android.ext.android.inject
 
 /**
