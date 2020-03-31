@@ -1,8 +1,9 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.utils
 
 import android.content.Context
-import android.view.View
-import android.widget.Toast
+import com.github.odaridavid.dimba.R
+import java.net.ConnectException
+import java.net.UnknownHostException
 
 /**
  *
@@ -17,11 +18,13 @@ import android.widget.Toast
  * the License.
  *
  **/
+class ExceptionHandler(val context: Context) {
 
-fun View.isVisible(visible: Boolean) {
-    visibility = if (visible) View.VISIBLE else View.GONE
-}
-
-fun Context.showToast(msg: String) {
-    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    fun parse(exception: Exception): String {
+        return when (exception) {
+            is ConnectException -> context.getString(R.string.no_internet_connection)
+            is UnknownHostException -> context.getString(R.string.no_internet_connection)
+            else -> exception.message!!
+        }
+    }
 }

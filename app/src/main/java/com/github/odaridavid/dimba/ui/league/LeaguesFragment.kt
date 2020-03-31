@@ -2,16 +2,15 @@ package com.github.odaridavid.dimba.ui.league
 
 import android.os.Bundle
 import android.view.*
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.base.BaseFragment
-import com.github.odaridavid.dimba.commons.Error
-import com.github.odaridavid.dimba.commons.Success
-import com.github.odaridavid.dimba.commons.isVisible
+import com.github.odaridavid.dimba.utils.Error
+import com.github.odaridavid.dimba.utils.Success
+import com.github.odaridavid.dimba.utils.isVisible
 import com.github.odaridavid.dimba.models.leagues.League
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_leagues.*

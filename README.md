@@ -51,7 +51,7 @@ and default parameters
 
 ## Screenshots
 
-|<img src="art/leagues.png" width=200/>|<img src="art/settings_dark.png" width=200/>|<img src="art/no_fix.png" width=200/>|<img src="art/live_fix.png" width=200/>|
+|<img src="art/leagues.png" width=200/>|<img src="art/settings.png" width=200/>|<img src="art/no_fix.png" width=200/>|<img src="art/live_fix.png" width=200/>|
 |:--:|:--:|:--:|:--:|
 
 |<img src="art/epl.png" width=200/>|<img src="art/no_stan.png" width=200/>|<img src="art/epl_dark.png" width=200/>|<img src="art/live_dark.png" width=200/>|

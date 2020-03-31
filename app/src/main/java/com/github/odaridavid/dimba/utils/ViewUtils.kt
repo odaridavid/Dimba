@@ -1,4 +1,8 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.utils
+
+import android.content.Context
+import android.view.View
+import android.widget.Toast
 
 /**
  *
@@ -13,12 +17,11 @@ package com.github.odaridavid.dimba.commons
  * the License.
  *
  **/
-object Constants {
-    const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
-    const val APP_DATABASE_NAME = "dimba_db"
 
-    //THEME VALUES
-    const val THEME_LIGHT = "Light"
-    const val THEME_DARK = "Dark"
-    const val THEME_SYSTEM = "System"
+fun View.isVisible(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+fun Context.showToast(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
 }

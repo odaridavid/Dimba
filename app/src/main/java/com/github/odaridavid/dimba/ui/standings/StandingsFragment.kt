@@ -7,9 +7,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.base.BaseFragment
-import com.github.odaridavid.dimba.commons.Error
-import com.github.odaridavid.dimba.commons.Success
-import com.github.odaridavid.dimba.commons.isVisible
+import com.github.odaridavid.dimba.utils.Error
+import com.github.odaridavid.dimba.utils.Success
+import com.github.odaridavid.dimba.utils.isVisible
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.fragment_standings.*

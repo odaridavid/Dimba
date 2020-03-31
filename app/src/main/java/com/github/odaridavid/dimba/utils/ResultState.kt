@@ -1,4 +1,4 @@
-package com.github.odaridavid.dimba.commons
+package com.github.odaridavid.dimba.utils
 
 /**
  *

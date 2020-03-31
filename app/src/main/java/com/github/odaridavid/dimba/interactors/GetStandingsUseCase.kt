@@ -1,6 +1,6 @@
 package com.github.odaridavid.dimba.interactors
 
-import com.github.odaridavid.dimba.commons.ResultState
+import com.github.odaridavid.dimba.utils.ResultState
 import com.github.odaridavid.dimba.models.standings.TeamStanding
 import com.github.odaridavid.dimba.repositories.StandingsRepository
 
