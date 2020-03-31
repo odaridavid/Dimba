@@ -13,12 +13,14 @@
 -->
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--TODO Icon based on current theme-->
     <ListPreference
+        app:defaultValue="Light"
         app:entryValues="@array/theme_values"
         app:key="@string/key_theme_preference"
         app:title="@string/title_theme_preference"
-        app:defaultValue="Light"
         app:useSimpleSummaryProvider="true" />
 
+    <PreferenceCategory
+        app:key="app_version"
+        app:title="App Version" />
 </androidx.preference.PreferenceScreen>

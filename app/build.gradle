@@ -101,8 +101,7 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
 
-    //Work Manager
-    implementation "androidx.work:work-runtime-ktx:$work_version"
+    implementation 'com.github.nkzawa:socket.io-client:0.6.0'
 
     //Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'

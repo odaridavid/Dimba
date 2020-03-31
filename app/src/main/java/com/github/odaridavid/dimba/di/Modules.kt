@@ -2,7 +2,6 @@ package com.github.odaridavid.dimba.di
 
 import androidx.preference.PreferenceManager
 import androidx.room.Room
-import com.github.odaridavid.dimba.utils.Constants
 import com.github.odaridavid.dimba.db.DimbaDatabase
 import com.github.odaridavid.dimba.db.LeaguesDao
 import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
@@ -13,6 +12,7 @@ import com.github.odaridavid.dimba.repositories.*
 import com.github.odaridavid.dimba.ui.fixtures.FixturesViewModel
 import com.github.odaridavid.dimba.ui.league.LeaguesViewModel
 import com.github.odaridavid.dimba.ui.standings.StandingsViewModel
+import com.github.odaridavid.dimba.utils.Constants
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

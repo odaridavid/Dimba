@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.preference.ListPreference
 import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
+import com.github.odaridavid.dimba.BuildConfig
 import com.github.odaridavid.dimba.R
 import com.github.odaridavid.dimba.utils.Constants.THEME_DARK
 import com.github.odaridavid.dimba.utils.Constants.THEME_LIGHT
@@ -31,9 +33,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val sharedPref: SharedPreferences by inject()
     private var themePreference: ListPreference? = null
+    private var appVersionPreference: PreferenceCategory? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
+        appVersionPreference = findPreference("app_version")
+        appVersionPreference?.summary = BuildConfig.VERSION_NAME
         //Get Theme List Preference
         themePreference = findPreference(getString(R.string.key_theme_preference))
         configPreference(themePreference)
