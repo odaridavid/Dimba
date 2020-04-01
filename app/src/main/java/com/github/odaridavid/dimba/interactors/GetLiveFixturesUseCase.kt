@@ -1,8 +1,8 @@
 package com.github.odaridavid.dimba.interactors
 
-import com.github.odaridavid.dimba.utils.ResultState
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
 import com.github.odaridavid.dimba.repositories.FixturesRepository
+import com.github.odaridavid.dimba.utils.ResultState
 
 /**
  *
