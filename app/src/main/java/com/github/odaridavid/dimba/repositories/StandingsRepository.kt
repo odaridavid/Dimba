@@ -1,7 +1,11 @@
 package com.github.odaridavid.dimba.repositories
 
-import com.github.odaridavid.dimba.utils.ResultState
+import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.standings.TeamStanding
+import com.github.odaridavid.dimba.network.FootballApiService
+import com.github.odaridavid.dimba.utils.ResultState
+import com.github.odaridavid.dimba.utils.Success
+import com.github.odaridavid.dimba.utils.executeNonBlocking
 
 /**
  *
@@ -16,7 +20,18 @@ import com.github.odaridavid.dimba.models.standings.TeamStanding
  * the License.
  *
  **/
-interface StandingsRepository {
+class StandingsRepository(val api: FootballApiService) {
 
-    suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>>
+    suspend fun getLeagueStandings(leagueId: Int): ResultState<List<List<TeamStanding>>> {
+        return executeNonBlocking {
+            val response = api.getLeagueStandings(leagueId)
+            if (response.api.results == 0)
+                Success(emptyList<List<TeamStanding>>())
+            else {
+                val standings =
+                    response.api.standings.map { it.map { standings -> standings.toEntity() } }
+                Success(standings)
+            }
+        }
+    }
 }

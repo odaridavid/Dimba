@@ -8,7 +8,9 @@ import com.github.odaridavid.dimba.interactors.GetAvailableLeaguesUseCase
 import com.github.odaridavid.dimba.interactors.GetLiveFixturesUseCase
 import com.github.odaridavid.dimba.interactors.GetStandingsUseCase
 import com.github.odaridavid.dimba.network.ApiClient
-import com.github.odaridavid.dimba.repositories.*
+import com.github.odaridavid.dimba.repositories.FixturesRepository
+import com.github.odaridavid.dimba.repositories.LeaguesRepository
+import com.github.odaridavid.dimba.repositories.StandingsRepository
 import com.github.odaridavid.dimba.ui.fixtures.FixturesViewModel
 import com.github.odaridavid.dimba.ui.league.LeaguesViewModel
 import com.github.odaridavid.dimba.ui.standings.StandingsViewModel
@@ -53,9 +55,9 @@ val data = module {
             .build()
     }
     single { provideLeagueDao(db = get()) }
-    factory<FixturesRepository> { FixturesRepositoryImpl(api = get()) }
-    factory<StandingsRepository> { StandingsRepositoryImpl(api = get()) }
-    factory<LeaguesRepository> { LeaguesRepositoryImpl(api = get(), leaguesDao = get()) }
+    single { FixturesRepository(api = get()) }
+    single { StandingsRepository(api = get()) }
+    single { LeaguesRepository(api = get(), leaguesDao = get()) }
 }
 
 val viewModel = module {

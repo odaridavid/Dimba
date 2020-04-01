@@ -1,8 +1,11 @@
 package com.github.odaridavid.dimba.repositories
 
-import com.github.odaridavid.dimba.utils.ResultState
+import com.github.odaridavid.dimba.mappers.toEntity
 import com.github.odaridavid.dimba.models.fixtures.LiveFixture
-
+import com.github.odaridavid.dimba.network.FootballApiService
+import com.github.odaridavid.dimba.utils.ResultState
+import com.github.odaridavid.dimba.utils.Success
+import com.github.odaridavid.dimba.utils.executeNonBlocking
 
 /**
  *
@@ -17,8 +20,20 @@ import com.github.odaridavid.dimba.models.fixtures.LiveFixture
  * the License.
  *
  **/
-interface FixturesRepository {
+class FixturesRepository(
+    private val api: FootballApiService
+) {
 
-    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>>
+    suspend fun getLiveFixtures(): ResultState<List<LiveFixture>> {
+        return executeNonBlocking {
+            val response = api.getFixturesInPlay()
+            if (response.api.results == 0)
+                Success(emptyList())
+            else {
+                val fixtures = response.api.fixtures
+                Success(fixtures.map { it.toEntity() })
+            }
+        }
+    }
 
 }
